@@ -14,7 +14,7 @@ public abstract class ConversationMulticastMultiRole extends Conversation {
 
 	// public String theirId;
 
-	// public TreeMap<String, TreeMap<String, String>> role_to_toKey;
+	public TreeMap<String, TreeMap<String, String>> role_to_toKey;
 	
 	public ArrayList<String> theirIds;
 	public ArrayList<String> theirKeys;

@@ -103,7 +103,9 @@ public abstract class ConversationMulticastMultRoleFSM extends ConversationMulti
 					this.myKey = dm.keyGen.getKey();
 					TreeMap<String, String> map = new TreeMap<String, String>();
 					map.put(msg.getFrom(),msg.getFromKey());
-					this.role_to_toKey = map;
+
+					// TODO: Ask Sam about this
+					//this.role_to_toKey = map;
 				}
 			}
 
@@ -156,7 +158,7 @@ public abstract class ConversationMulticastMultRoleFSM extends ConversationMulti
 		// if this has ended and there aren't any others then start a new one and have this removed
 		if (this.fsm.getCurrentState() == FSM.END_STATE) {
 			if (interpreter.countPlansOfType(this.type) <= 1 ){
-				ConversationMulticast temp = spawn(null, null);
+				ConversationMulticastMultiRole temp = spawn(null, null);
 				interpreter.addPlan(temp);	
 			}
 			return true;
