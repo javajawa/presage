@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * simply facilitate the interaction with the simulation platform, for instance activation of 
  * the agent and calling the agent to take its turn via a public method execute(). Within these constraints the user is 
  * free to develop their own agent architecture be it reactive, deliberative, BDI or otherwise. As such the platform is
- * neutral with respect to the agents’ internal architectures.
+ * neutral with respect to the agents' internal architectures.
  *
  */
 
