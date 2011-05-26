@@ -1,0 +1,13 @@
+<presageConfig>
+   <comment>A Iterated Chainstore Paradox</comment>
+   <outputfolder>tempoutput/</outputfolder>
+   <iterations>600</iterations>
+   <randomseed>43253252</randomseed>
+   <threaddelay>1</threaddelay>
+   <autorun>false</autorun>
+   <participantsconfigpath>inputfolder/chainstore/participants.xml</participantsconfigpath>
+   <pluginsconfigpath>inputfolder/chainstore/plugins.xml</pluginsconfigpath>
+   <eventscriptconfigpath>inputfolder/chainstore/methods.xml</eventscriptconfigpath>
+   <environmentclass>chainstore.environment.FullyConnectedWorld</environmentclass>
+   <environmentconfigpath>inputfolder/chainstore/environment.xml</environmentconfigpath>
+</presageConfig>

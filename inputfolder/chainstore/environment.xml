@@ -1,0 +1,10 @@
+<fullyConnectedWorld>
+   <queueactions>true</queueactions>
+   <randomseed>4643</randomseed>
+   <dmodel>
+      <environmentname>ConnectedEnvDataModel</environmentname>
+      <envClass>chainstore.environment.ConnectedEnvDataModel</envClass>
+      <time>0</time>
+      <playermodels/>
+   </dmodel>
+</fullyConnectedWorld>

@@ -1,0 +1,13 @@
+<pluginManager>
+   <plugins class="java.util.ArrayList">
+      <plugin class="example.plugins.ExampleEnvironmentViewer"/>
+      <plugin class="example.plugins.ParticipantPointsGraph">
+         <outputpath>tempoutput/scorechart.png</outputpath>
+         <updaterate>100</updaterate>
+      </plugin>
+      <plugin class="example.plugins.ParticipantFailuresGraph">
+         <outputpath>tempoutput/failchart.png</outputpath>
+         <updaterate>100</updaterate>
+      </plugin>
+   </plugins>
+</pluginManager>

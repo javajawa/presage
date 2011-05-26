@@ -1,0 +1,19 @@
+<pluginManager>
+   <plugins class="java.util.ArrayList">
+      <plugin class="infection.PercentageInfectedGraph">
+         <outputpath>tempoutput/percentinfected.png</outputpath>
+         <outputwidth>1900</outputwidth>
+         <outputheight>1200</outputheight>
+         <updaterate>100</updaterate>
+      </plugin>
+      <plugin class="infection.EnvDatatoXML">
+         <outputpath>tempoutput/percentinfected.xml</outputpath>
+         <pinfected/>
+      </plugin>
+      <plugin class="infection.EventLogger">
+         <outputpath>tempoutput/events.xml</outputpath>
+         <eventlog/>
+      </plugin>
+      <plugin class="infection.NetworkViewPlugin"/>
+   </plugins>
+</pluginManager>

@@ -1,0 +1,13 @@
+<presageConfig>
+   <comment>A simple Infection scenario</comment>
+   <outputfolder>tempoutput</outputfolder>
+   <iterations>20</iterations>
+   <randomseed>43253252</randomseed>
+   <threaddelay>1</threaddelay>
+   <autorun>false</autorun>
+   <participantsconfigpath>inputfolder/infectionexample/participants.xml</participantsconfigpath>
+   <pluginsconfigpath>inputfolder/infectionexample/plugins.xml</pluginsconfigpath>
+   <eventscriptconfigpath>inputfolder/infectionexample/methods.xml</eventscriptconfigpath>
+   <environmentclass>infection.StaticWorld</environmentclass>
+   <environmentconfigpath>inputfolder/infectionexample/environment.xml</environmentconfigpath>
+</presageConfig>

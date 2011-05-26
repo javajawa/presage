@@ -1,0 +1,14 @@
+<staticWorld>
+   <queueactions>true</queueactions>
+   <randomseed>2687318314929416262</randomseed>
+   <dmodel>
+      <environmentname>StaticEnvDataModel</environmentname>
+      <envClass>infection.StaticEnvDataModel</envClass>
+      <time>0</time>
+      <pconnection>0.05</pconnection>
+      <playermodels/>
+      <vertices/>
+      <edges/>
+      <eventlog/>
+   </dmodel>
+</staticWorld>

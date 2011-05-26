@@ -1,0 +1,21 @@
+<exampleWorld>
+   <queueactions>true</queueactions>
+   <randomseed>4643</randomseed>
+   <dmodel>
+      <environmentname>EnvDataModel</environmentname>
+      <envClass>example.ExampleEnvDataModel</envClass>
+      <time>0</time>
+      <WIDTH>800</WIDTH>
+      <HEIGHT>600</HEIGHT>
+      <safeboxX0>300</safeboxX0>
+      <safeboxX1>500</safeboxX1>
+      <safeboxY0>200</safeboxY0>
+      <safeboxY1>400</safeboxY1>
+      <expRate>25</expRate>
+      <goalWIDTH>50</goalWIDTH>
+      <goalHEIGHT>50</goalHEIGHT>
+      <timetofailbuffer>48</timetofailbuffer>
+      <goalfailurecost>150</goalfailurecost>
+      <playermodels/>
+   </dmodel>
+</exampleWorld>

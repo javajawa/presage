@@ -1,0 +1,48 @@
+<eventScriptManager>
+   <events>
+      <scriptedEvent>
+         <executiontime>1</executiontime>
+         <event class="presage.events.TestEvent">
+            <message>Agent0000</message>
+         </event>
+         <uuidstring>20d6f10d-4a67-4696-a952-dadeab6d4ef0</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>27</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Recon05</participantname>
+         </event>
+         <uuidstring>1f34c091-affc-48a9-a1fa-7435677e69b5</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>35</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Recon06</participantname>
+         </event>
+         <uuidstring>8364642e-6b33-4c22-824e-77a1fdad82b7</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>45</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Recon07</participantname>
+         </event>
+         <uuidstring>0b3c91bd-9f04-47d9-9b43-adc72b1de655</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>55</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Recon08</participantname>
+         </event>
+         <uuidstring>d0316c67-9955-477f-8e28-3d63093d3438</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>65</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Recon09</participantname>
+         </event>
+         <uuidstring>1b63d467-a62c-45f8-8776-1e095897728a</uuidstring>
+      </scriptedEvent>
+   </events>
+   <preevents/>
+   <postevents/>
+</eventScriptManager>

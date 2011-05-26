@@ -1,0 +1,733 @@
+<eventScriptManager>
+   <events>
+      <scriptedEvent>
+         <executiontime>103</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Arbiter</participantname>
+         </event>
+         <uuidstring>d6c8b7b1-8e61-4f90-bb31-d3d1954445c1</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>0</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Monopolist</participantname>
+         </event>
+         <uuidstring>89e9c1c9-891c-4d27-b73f-e01dbbe0975f</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>1</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0000</participantname>
+         </event>
+         <uuidstring>c58d5b8a-b980-4240-b9ac-bd500fed9786</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>2</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0001</participantname>
+         </event>
+         <uuidstring>c41a583c-5875-4c9e-a558-aac1f8076ae8</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>3</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0002</participantname>
+         </event>
+         <uuidstring>04103b0e-346c-4630-8e6d-2b3edbd64384</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>4</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0003</participantname>
+         </event>
+         <uuidstring>2fbc500b-b442-439c-a981-138901e6a9da</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>5</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0004</participantname>
+         </event>
+         <uuidstring>143aeeeb-d9ed-491a-a19a-74c923c8d563</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>6</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0005</participantname>
+         </event>
+         <uuidstring>011b48c8-da4a-4abf-8d9b-f56acf16494f</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>7</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0006</participantname>
+         </event>
+         <uuidstring>da312740-d77f-473e-a315-4d77853a3d1a</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>8</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0007</participantname>
+         </event>
+         <uuidstring>b019a3b3-74b0-4afc-86f0-be747407ebf1</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>9</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0008</participantname>
+         </event>
+         <uuidstring>09fb49ed-710b-458b-b71d-77673fa74e95</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>10</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0009</participantname>
+         </event>
+         <uuidstring>9da4180f-3acf-422e-99f8-182e4897fd25</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>11</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0010</participantname>
+         </event>
+         <uuidstring>a847b7d8-23a4-4a3d-b571-6e085ea278f9</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>12</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0011</participantname>
+         </event>
+         <uuidstring>3613dc62-4fcd-4b35-9839-4871ea166f86</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>13</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0012</participantname>
+         </event>
+         <uuidstring>37a78b40-4486-4470-978b-cdbe4a4b67b3</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>14</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0013</participantname>
+         </event>
+         <uuidstring>c9fc47d9-d469-4d16-bdb1-4652ce31d0ff</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>15</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0014</participantname>
+         </event>
+         <uuidstring>28e40e2b-1c9d-4236-acdd-0c9916111f5a</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>16</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0015</participantname>
+         </event>
+         <uuidstring>95ec001c-bcfe-449e-acf9-363bc929c8ad</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>17</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0016</participantname>
+         </event>
+         <uuidstring>2e81b4e0-1785-43d1-ac7a-a2fa04304c57</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>18</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0017</participantname>
+         </event>
+         <uuidstring>63b9556c-e441-4854-a688-5e3a533e7a1d</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>19</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0018</participantname>
+         </event>
+         <uuidstring>8c70fbc3-b163-455c-a02e-56bfba907e4c</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>20</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0019</participantname>
+         </event>
+         <uuidstring>e94dc4b3-06bd-4dba-a271-eb8158efa5af</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>21</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0020</participantname>
+         </event>
+         <uuidstring>f6a35ac8-6907-4f68-875c-5fa929760d76</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>22</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0021</participantname>
+         </event>
+         <uuidstring>1b5beedc-faed-4481-9239-870383943a48</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>23</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0022</participantname>
+         </event>
+         <uuidstring>e46d975d-0440-4fc2-83a9-836312dffdab</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>24</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0023</participantname>
+         </event>
+         <uuidstring>0d3df5d5-8c09-4031-94b3-026da42fedc3</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>25</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0024</participantname>
+         </event>
+         <uuidstring>6af0d325-881d-47e0-bf92-0d037fe18011</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>26</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0025</participantname>
+         </event>
+         <uuidstring>63e9b741-6cb4-4594-8e28-137d157c895f</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>27</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0026</participantname>
+         </event>
+         <uuidstring>13ccb0a8-e303-4f13-b411-f2285316d691</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>28</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0027</participantname>
+         </event>
+         <uuidstring>24486682-7367-4205-b6a0-24755265c534</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>29</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0028</participantname>
+         </event>
+         <uuidstring>f8d6eaf1-5cd0-4219-9886-b4888c9bd6e6</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>30</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0029</participantname>
+         </event>
+         <uuidstring>63de9534-e7ab-4d9f-99c2-69f6cf59d142</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>31</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0030</participantname>
+         </event>
+         <uuidstring>a58d3d7e-83de-4aee-ab33-af0ef0b04264</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>32</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0031</participantname>
+         </event>
+         <uuidstring>5433fab6-9675-47bc-8703-b4816c7a0428</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>33</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0032</participantname>
+         </event>
+         <uuidstring>c064044a-6303-4899-90b6-9e68938ed397</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>34</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0033</participantname>
+         </event>
+         <uuidstring>ea1f3fa7-ab91-4eaf-a84b-9f0cfb392dc8</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>35</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0034</participantname>
+         </event>
+         <uuidstring>173e5e5f-ec6e-470c-8aff-22039a183ccd</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>36</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0035</participantname>
+         </event>
+         <uuidstring>1a154680-267c-4d39-9b4b-172cedceb53a</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>37</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0036</participantname>
+         </event>
+         <uuidstring>3c2dd676-ff98-43f8-b8a0-79f844bb6645</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>38</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0037</participantname>
+         </event>
+         <uuidstring>c411d891-61df-4711-8d08-e6328d1a1679</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>39</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0038</participantname>
+         </event>
+         <uuidstring>28f0bf5a-0cca-4259-b69c-e2a588fccc45</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>40</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0039</participantname>
+         </event>
+         <uuidstring>93dac634-61d8-430a-824f-ddce9f878581</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>41</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0040</participantname>
+         </event>
+         <uuidstring>f7544115-58f2-478c-a9f7-d5c4de6c68b7</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>42</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0041</participantname>
+         </event>
+         <uuidstring>a61d4edb-071a-4538-88d2-080c6f191b0f</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>43</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0042</participantname>
+         </event>
+         <uuidstring>5f136dc8-9455-465b-89cf-2e65720fb1fb</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>44</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0043</participantname>
+         </event>
+         <uuidstring>1d7150f1-8c58-46b4-b7e1-d390eea6c2bb</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>45</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0044</participantname>
+         </event>
+         <uuidstring>3429d1ea-f6cb-469b-81f7-979fb284067d</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>46</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0045</participantname>
+         </event>
+         <uuidstring>350fd990-b548-41a7-b927-e2b8b960bcd8</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>47</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0046</participantname>
+         </event>
+         <uuidstring>57b50599-7e50-4d46-873a-708192b23cd3</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>48</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0047</participantname>
+         </event>
+         <uuidstring>427601b5-9f8e-4e6e-b60d-63322a3157f7</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>49</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0048</participantname>
+         </event>
+         <uuidstring>a7bf0f16-18d4-43df-a7f3-2a24bf63e166</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>50</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0049</participantname>
+         </event>
+         <uuidstring>8e883773-200d-4184-b22b-1270185bb851</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>51</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0050</participantname>
+         </event>
+         <uuidstring>f0ac3393-0d22-4cde-ba5f-3a4161142497</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>52</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0051</participantname>
+         </event>
+         <uuidstring>d676a9b6-932f-44be-80ec-c3be0bd22fcc</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>53</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0052</participantname>
+         </event>
+         <uuidstring>f3b7c537-a5ba-48f9-9d51-18dc54c194d2</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>54</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0053</participantname>
+         </event>
+         <uuidstring>a3f9356c-c57d-4316-a238-e7b25462211f</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>55</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0054</participantname>
+         </event>
+         <uuidstring>3ca26554-6ddf-49f4-9ca6-0c58845af970</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>56</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0055</participantname>
+         </event>
+         <uuidstring>208fd7d4-00b1-4350-b2f2-6e3e0d66d44b</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>57</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0056</participantname>
+         </event>
+         <uuidstring>22e4eefa-b6a8-442e-8f5f-3baef3fc3379</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>58</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0057</participantname>
+         </event>
+         <uuidstring>d1ef13b5-82d6-4c91-8ddf-7d6b9a89e93c</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>59</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0058</participantname>
+         </event>
+         <uuidstring>cba23144-c018-4c18-b755-0419e0d2053a</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>60</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0059</participantname>
+         </event>
+         <uuidstring>bc314f05-6beb-4b0d-881d-affc15c5bdd9</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>61</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0060</participantname>
+         </event>
+         <uuidstring>aaebb75f-a584-484c-9df9-e194a8f2b645</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>62</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0061</participantname>
+         </event>
+         <uuidstring>130acdc4-e217-4d89-add2-0c1a1230812c</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>63</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0062</participantname>
+         </event>
+         <uuidstring>12eadf28-e139-418e-bd28-c92b67c24a13</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>64</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0063</participantname>
+         </event>
+         <uuidstring>59a66fc2-9e75-43bb-a277-6560f9694c67</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>65</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0064</participantname>
+         </event>
+         <uuidstring>482f9b0c-851d-477b-b54f-eb17645d1f80</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>66</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0065</participantname>
+         </event>
+         <uuidstring>2d3e87cd-5953-4919-82b7-ffb1e4a59900</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>67</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0066</participantname>
+         </event>
+         <uuidstring>27be6a06-9ccb-42d3-9309-c5639ebd70b5</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>68</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0067</participantname>
+         </event>
+         <uuidstring>1414b140-74e7-49cf-9f02-da4209bcf820</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>69</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0068</participantname>
+         </event>
+         <uuidstring>bb7a2491-2127-47a2-91ba-321fb8e338cf</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>70</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0069</participantname>
+         </event>
+         <uuidstring>27d26583-44f3-4492-8733-10edc311000d</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>71</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0070</participantname>
+         </event>
+         <uuidstring>d4ba023c-35cf-47f2-a6e3-ad404db9a171</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>72</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0071</participantname>
+         </event>
+         <uuidstring>92ea9a4a-3da0-49d4-bcd1-7349c08dcc4e</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>73</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0072</participantname>
+         </event>
+         <uuidstring>001877b8-47ba-4158-8837-d1a62e6362ba</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>74</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0073</participantname>
+         </event>
+         <uuidstring>cfceacc4-2c6b-4fa9-9f94-9f90f8d65624</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>75</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0074</participantname>
+         </event>
+         <uuidstring>d75194e7-9c33-4fb4-bda7-92604d9be2bd</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>76</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0075</participantname>
+         </event>
+         <uuidstring>1eac140b-0f02-43b3-ae3b-97b6143f47c6</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>77</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0076</participantname>
+         </event>
+         <uuidstring>5cee5157-b22e-42a1-804b-2fd8cae0e755</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>78</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0077</participantname>
+         </event>
+         <uuidstring>598c0fbc-7334-432e-ae6b-063572ee06da</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>79</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0078</participantname>
+         </event>
+         <uuidstring>61f15dca-fde1-42a3-b323-8bdfac032e82</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>80</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0079</participantname>
+         </event>
+         <uuidstring>9ad8c1cf-c09e-4d2c-984f-e577d2a8bf2f</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>81</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0080</participantname>
+         </event>
+         <uuidstring>ee91fab7-30a5-4dbd-aab3-c029607f31ed</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>82</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0081</participantname>
+         </event>
+         <uuidstring>5566e88f-7f13-48f6-ba63-8d6293802393</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>83</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0082</participantname>
+         </event>
+         <uuidstring>4c2428b2-6850-4115-a6fb-e93345c5c58b</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>84</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0083</participantname>
+         </event>
+         <uuidstring>858c8530-fdc0-4f59-a9d5-227ef5a6c969</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>85</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0084</participantname>
+         </event>
+         <uuidstring>76c7db32-7215-48cb-b8f8-1eff9ce970ef</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>86</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0085</participantname>
+         </event>
+         <uuidstring>6aa73238-cfb3-4242-8c7c-75b296c6c36e</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>87</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0086</participantname>
+         </event>
+         <uuidstring>d7ca6209-6d25-40e1-9e70-5d5db6f9b79c</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>88</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0087</participantname>
+         </event>
+         <uuidstring>da4596c4-95e1-475d-9b1f-e570e1dfc7f6</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>89</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0088</participantname>
+         </event>
+         <uuidstring>f6bf85ae-9d1b-4fcb-b5d5-bb8b6fa70517</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>90</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0089</participantname>
+         </event>
+         <uuidstring>d762873b-d1f3-4a2b-9698-2f4bb3f82011</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>91</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0090</participantname>
+         </event>
+         <uuidstring>ab7c9dbc-c70a-471c-a56c-ba1bec8a748c</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>92</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0091</participantname>
+         </event>
+         <uuidstring>e9427ee2-cdda-4071-8697-88960dedd3bc</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>93</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0092</participantname>
+         </event>
+         <uuidstring>4eff5634-83c3-4a4e-9fac-5ac57e4ecf9e</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>94</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0093</participantname>
+         </event>
+         <uuidstring>a933e07f-b9b6-404d-8239-2fd143763227</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>95</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0094</participantname>
+         </event>
+         <uuidstring>69d2dc94-3888-401c-baaa-e709d950565c</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>96</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0095</participantname>
+         </event>
+         <uuidstring>0490b0b7-2ff6-4b6d-9fe1-9f650dcd0ce7</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>97</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0096</participantname>
+         </event>
+         <uuidstring>af5716cf-6bf4-4f0f-aa4e-31a7c170edbc</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>98</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0097</participantname>
+         </event>
+         <uuidstring>1cefbea3-2af7-4826-a03e-d568f2d473de</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>99</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0098</participantname>
+         </event>
+         <uuidstring>10e5f348-a552-4b2c-8095-36e60759c9df</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>100</executiontime>
+         <event class="presage.events.CoreEvents$ActivateParticipant">
+            <participantname>Competitor0099</participantname>
+         </event>
+         <uuidstring>5e88887f-8eb0-43c6-b1a9-a6e7d0192925</uuidstring>
+      </scriptedEvent>
+   </events>
+   <preevents/>
+   <postevents>
+      <scriptedEvent>
+         <executiontime>1</executiontime>
+         <event class="chainstore.ChainstoreEvents$PrintResults"/>
+         <uuidstring>a8870753-7f42-4efe-aea8-348678b33ad9</uuidstring>
+      </scriptedEvent>
+      <scriptedEvent>
+         <executiontime>1</executiontime>
+         <event class="chainstore.ChainstoreEvents$FileResults">
+            <filename>results.csv</filename>
+         </event>
+         <uuidstring>b5c61245-2d09-474f-952e-afeeb88eaac9</uuidstring>
+      </scriptedEvent>
+   </postevents>
+</eventScriptManager>

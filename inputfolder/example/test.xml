@@ -1,0 +1,13 @@
+<presageConfig>
+   <comment>A simple Manet scenario</comment>
+   <outputfolder>tempoutput/</outputfolder>
+   <iterations>500</iterations>
+   <randomseed>43253252</randomseed>
+   <threaddelay>1</threaddelay>
+   <autorun>false</autorun>
+   <participantsconfigpath>inputfolder/example/participants.xml</participantsconfigpath>
+   <pluginsconfigpath>inputfolder/example/plugins.xml</pluginsconfigpath>
+   <eventscriptconfigpath>inputfolder/example/methods.xml</eventscriptconfigpath>
+   <environmentclass>example.ExampleWorld</environmentclass>
+   <environmentconfigpath>inputfolder/example/environment.xml</environmentconfigpath>
+</presageConfig>
