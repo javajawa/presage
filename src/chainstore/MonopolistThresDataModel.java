@@ -27,7 +27,7 @@ public class MonopolistThresDataModel extends ChainDataModel {
 	@Element
 	public int myThreshold;
 
-
+	@Deprecated
 	public MonopolistThresDataModel(){
 		super();
 	}

@@ -528,6 +528,7 @@ public class Simulation implements Runnable
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public TreeMap<String, PlayerDataModel> getPlayersDataModels(){
 
 		synchronized(playersDataModels){

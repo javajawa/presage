@@ -27,7 +27,7 @@ public class CompetitorDataModel extends ChainDataModel {
 	@Element
     public int myStrategy;
 	
-
+	@Deprecated
 	public CompetitorDataModel(){
 		super();
 	}

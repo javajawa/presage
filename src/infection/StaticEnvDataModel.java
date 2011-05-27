@@ -31,7 +31,8 @@ public class StaticEnvDataModel extends AEnvDataModel {
 	
 	@ElementList
 	public ArrayList<LogEvent> eventlog = new ArrayList<LogEvent>();
-	
+
+	@Deprecated
 	public StaticEnvDataModel(){
 		super();
 	}

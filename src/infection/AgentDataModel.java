@@ -19,7 +19,7 @@ public class AgentDataModel extends APlayerDataModel {
 	@Element
 	protected boolean secured;
 	
-	
+	@Deprecated
 	public AgentDataModel(){
 		super();
 	}

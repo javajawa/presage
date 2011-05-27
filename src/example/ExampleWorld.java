@@ -38,7 +38,10 @@ public class ExampleWorld extends AbstractEnvironment {
 
 	// TreeMap<String, ArrayList<String>> agentconnections = new  TreeMap<String, ArrayList<String>>();
 
-	public ExampleWorld(){}
+	@Deprecated
+	public ExampleWorld(){
+		super();
+	}
 
 	public ExampleWorld(boolean queueactions, long randomseed, ExampleEnvDataModel dmodel) {
 		super(queueactions, randomseed);

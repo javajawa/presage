@@ -22,6 +22,7 @@ public class ChainDataModel extends APlayerDataModel {
 	// @Element
 	// public int myStrategy;
 	
+	@Deprecated
 	public ChainDataModel(){
 		super();
 	}

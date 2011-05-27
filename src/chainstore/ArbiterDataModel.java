@@ -37,7 +37,7 @@ public class ArbiterDataModel extends ChainDataModel {
 	@ElementMap(required=false)
 	protected TreeMap<String, ArrayList<Integer>> competitorScore; // = new TreeMap<String, ArrayList<Integer>>();
 
-	
+	@Deprecated
 	public ArbiterDataModel(){
 		super();
 	}

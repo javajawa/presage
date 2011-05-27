@@ -22,7 +22,9 @@ public class FullyConnectedWorld extends AbstractEnvironment {
 	@Element
 	ConnectedEnvDataModel dmodel;
 
+	@Deprecated
 	public FullyConnectedWorld(){	
+		super();
 	}
 
 	public FullyConnectedWorld(boolean queueactions, long randomseed, ConnectedEnvDataModel dmodel) {

@@ -17,6 +17,7 @@ public class ConnectedEnvDataModel extends AEnvDataModel {
 //	@ElementArray(required = false)
 //	public String[] indexToName;
 
+	@Deprecated
 	public ConnectedEnvDataModel(){
 		super();
 	}

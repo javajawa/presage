@@ -34,6 +34,7 @@ import example.inputs.*;
 import presage.Participant;
 
 public class ReconAgent implements Participant {
+	private static final long serialVersionUID = 1L;
 
 	@Element
 	ExampleDataModel dm;

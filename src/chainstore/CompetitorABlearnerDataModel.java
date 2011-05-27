@@ -36,6 +36,7 @@ public class CompetitorABlearnerDataModel extends ChainDataModel {
 	@Element
 	public double p_nc; // initial probability of NC
 
+	@Deprecated
 	public CompetitorABlearnerDataModel(){
 		super();
 	}

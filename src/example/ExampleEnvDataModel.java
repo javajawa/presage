@@ -73,7 +73,10 @@ public class ExampleEnvDataModel extends AEnvDataModel {
 	
 	TreeMap<UUID, SurveyResult> validsurveys = new TreeMap<UUID, SurveyResult>();
 	
-	public ExampleEnvDataModel(){}
+	@Deprecated
+	public ExampleEnvDataModel(){
+		super();
+	}
 	
 	public ExampleEnvDataModel(String environmentname, String envClass, long time){
 		super(environmentname, envClass, time);

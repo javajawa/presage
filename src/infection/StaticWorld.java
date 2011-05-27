@@ -24,7 +24,9 @@ public class StaticWorld extends AbstractEnvironment {
 	@Element
 	StaticEnvDataModel dmodel;
 
+	@Deprecated
 	public StaticWorld() {
+		super();
 	}
 
 	@presage.annotations.EnvironmentConstructor( { "queueactions",

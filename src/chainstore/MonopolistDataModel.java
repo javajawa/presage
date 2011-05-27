@@ -27,7 +27,7 @@ public class MonopolistDataModel extends ChainDataModel {
 	@Element
     public int myStrategy;
 
-
+	@Deprecated
 	public MonopolistDataModel(){
 		super();
 	}
