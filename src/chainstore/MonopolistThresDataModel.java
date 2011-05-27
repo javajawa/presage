@@ -11,6 +11,7 @@ import presage.abstractparticipant.APlayerDataModel;
 import presage.util.StringParseTools;
 
 public class MonopolistThresDataModel extends ChainDataModel {
+	private static final long serialVersionUID = 1L;
 
 //	@Element
 //	protected long cfpRate;

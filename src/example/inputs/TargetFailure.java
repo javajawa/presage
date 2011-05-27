@@ -6,7 +6,8 @@ import org.simpleframework.xml.Element;
 import presage.Input;
 
 public class TargetFailure implements Input, java.io.Serializable {
-
+	public final static long serialVersionUID = 1L;
+					
 	@Element
 	private long timestamp;
 	

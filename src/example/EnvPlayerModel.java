@@ -9,6 +9,7 @@ import org.simpleframework.xml.ElementList;
 import example.inputs.Target;
 
 public class EnvPlayerModel implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 		@ElementList
 		public ArrayList<String> roles;

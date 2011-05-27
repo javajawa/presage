@@ -48,6 +48,7 @@ import org.jfree.ui.RefineryUtilities;
 //import org.jfree.chart.StandardLegend;
 
 public class MemoryPanel extends JPanel implements Runnable  {
+	private static final long serialVersionUID = 1L;
 	
 	JFreeChart chart;
 	ChartPanel chartPanel;

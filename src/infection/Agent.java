@@ -12,7 +12,8 @@ import presage.abstractparticipant.Interpreter;
 import presage.environment.messages.ENVDeRegisterRequest;
 import presage.Input;
 
-public class Agent implements Participant {	
+public class Agent implements Participant {
+	private static final long serialVersionUID = 1L;
 
 	protected Interpreter interpreter;
 

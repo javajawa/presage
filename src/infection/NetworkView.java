@@ -58,6 +58,7 @@ import edu.uci.ics.jung.visualization.control.ScalingControl;
 
 
 public class NetworkView extends JPanel {
+	private static final long serialVersionUID = 1L;
 
 	String eventlogpath;
 	

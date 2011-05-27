@@ -21,7 +21,8 @@ import presage.abstractparticipant.Interpreter;
 import presage.environment.messages.ENVDeRegisterRequest;
 import presage.Input;
 
-public class MonopolistThres implements Participant {	
+public class MonopolistThres implements Participant {
+	private static final long serialVersionUID = 1L;
 
 
 	protected Interpreter interpreter;

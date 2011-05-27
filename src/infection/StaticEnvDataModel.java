@@ -14,6 +14,7 @@ import infection.LogEvent.VertexAddEvent;
 import infection.LogEvent.VertexInfectedEvent;
 
 public class StaticEnvDataModel extends AEnvDataModel {
+	private static final long serialVersionUID = 1L;
 
 	@Element
 	double pconnection;
@@ -127,6 +128,7 @@ public class StaticEnvDataModel extends AEnvDataModel {
 	}
 	
 	public class Edge implements java.io.Serializable {
+		private static final long serialVersionUID = 1L;
 		
 		public String from;
 		public String to;

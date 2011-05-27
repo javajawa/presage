@@ -46,6 +46,7 @@ import presage.Plugin;
 import presage.Simulation;
 
 public class NetworkViewPlugin extends JPanel implements Plugin {
+	private static final long serialVersionUID = 1L;
 	Simulation sim;
 	
 	StaticEnvDataModel dmodel;

@@ -11,6 +11,7 @@ import presage.abstractparticipant.APlayerDataModel;
 import presage.util.StringParseTools;
 
 public class ChainDataModel extends APlayerDataModel {
+	private static final long serialVersionUID = 1L;
 	
 	// list of contacts and their roles.
 	protected TreeMap<String, ArrayList<String>> contactsToRoles;

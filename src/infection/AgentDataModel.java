@@ -11,6 +11,7 @@ import presage.abstractparticipant.APlayerDataModel;
 import presage.util.StringParseTools;
 
 public class AgentDataModel extends APlayerDataModel {
+	private static final long serialVersionUID = 1L;
 
 	@Element
 	protected boolean infected;

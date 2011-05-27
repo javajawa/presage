@@ -6,6 +6,7 @@ import java.util.UUID;
 import presage.Message;
 
 public class RoleInformMsg extends Message {
+	private static final long serialVersionUID = 1L;
 
 	private ArrayList<String> roles;
 	

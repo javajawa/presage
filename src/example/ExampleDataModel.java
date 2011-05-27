@@ -14,6 +14,7 @@ import example.inputs.Target;
 import presage.abstractparticipant.APlayerDataModel;
 
 public class ExampleDataModel extends APlayerDataModel {
+	private static final long serialVersionUID = 1L;
 
 	@Element
 	public int wirelessRange;

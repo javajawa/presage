@@ -7,6 +7,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 public class InfEnvPlayerRecord implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 		
 		@Element
 		public String participantId;

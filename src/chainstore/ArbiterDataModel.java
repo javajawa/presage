@@ -13,6 +13,7 @@ import presage.abstractparticipant.APlayerDataModel;
 import presage.util.StringParseTools;
 
 public class ArbiterDataModel extends ChainDataModel {
+	private static final long serialVersionUID = 1L;
 
 	@Element
 	protected long cfpRate;

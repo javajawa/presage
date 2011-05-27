@@ -8,6 +8,7 @@ package presage.abstractparticipant;
  * Imperial College London
  */
 public class KeyGen implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	// TODO this needs to be serielizable to XML to support intrupt and mobile agent code
 	

@@ -13,6 +13,7 @@ import java.io.*;
 import java.util.UUID;
 
 public class Message implements Input, Action, Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private String to, from;
 	

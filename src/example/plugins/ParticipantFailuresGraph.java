@@ -77,6 +77,7 @@ import java.util.Iterator;
 import java.util.UUID;
 
 public class ParticipantFailuresGraph extends JPanel implements Plugin {
+	private static final long serialVersionUID = 1L;
 
 
 	Simulation sim;

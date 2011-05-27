@@ -3,6 +3,7 @@ package presage.environment.messages;
 import java.util.UUID;
 
 public class ENVDeRegisterRequest implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String participantId;
 	private UUID participantAuthCode;

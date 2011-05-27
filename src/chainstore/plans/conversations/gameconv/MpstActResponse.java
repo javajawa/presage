@@ -6,6 +6,7 @@ import java.util.UUID;
 import presage.Message;
 
 public class MpstActResponse extends Message {
+	private static final long serialVersionUID = 1L;
 
 	int action = 0;
 	

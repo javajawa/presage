@@ -6,6 +6,7 @@ import org.simpleframework.xml.Element;
 import presage.Input;
 
 public class Target implements Input, java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Element
 	private long timestamp;

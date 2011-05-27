@@ -17,6 +17,7 @@ import example.inputs.SurveyResult;
 
 @Root
 public class ExampleEnvDataModel extends AEnvDataModel {
+	private static final long serialVersionUID = 1L;
 	
 	@Element
 	public int WIDTH;

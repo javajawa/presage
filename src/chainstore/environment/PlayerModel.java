@@ -7,6 +7,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 public class PlayerModel implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 		@ElementList
 		public ArrayList<String> roles;

@@ -9,6 +9,7 @@ import org.simpleframework.xml.ElementList;
 import presage.Message;
 
 public class ResultInform extends Message {
+	private static final long serialVersionUID = 1L;
 
 //	 Results Data
 	@ElementList

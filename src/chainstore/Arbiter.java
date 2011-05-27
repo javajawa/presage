@@ -31,7 +31,8 @@ import presage.environment.messages.ENVDeRegisterRequest;
 import presage.util.StringParseTools;
 import presage.Input;
 
-public class Arbiter implements Participant {	
+public class Arbiter implements Participant {
+	private static final long serialVersionUID = 1L;
 
 	protected Interpreter interpreter;
 

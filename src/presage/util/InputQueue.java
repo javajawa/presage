@@ -14,6 +14,7 @@ import java.util.*;
 
 
 public class InputQueue implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	protected LinkedList<Input> queueList;
 	protected String queueName;

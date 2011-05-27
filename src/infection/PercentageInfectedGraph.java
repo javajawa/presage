@@ -27,6 +27,7 @@ import presage.annotations.PluginConstructor;
 import presage.util.ObjectCloner;
 
 public class PercentageInfectedGraph extends JPanel implements Plugin {
+	private static final long serialVersionUID = 1L;
 
 	Simulation sim;
 

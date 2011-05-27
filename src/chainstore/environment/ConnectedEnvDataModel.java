@@ -9,6 +9,7 @@ import presage.Simulation;
 import presage.environment.AEnvDataModel;
 
 public class ConnectedEnvDataModel extends AEnvDataModel {
+	private static final long serialVersionUID = 1L;
 
 	@ElementMap
 	public TreeMap<String, PlayerModel> playermodels = new TreeMap<String, PlayerModel>();

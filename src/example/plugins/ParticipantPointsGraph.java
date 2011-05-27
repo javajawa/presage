@@ -30,6 +30,7 @@ import example.ExampleEnvDataModel;
 
 
 public class ParticipantPointsGraph extends JPanel implements Plugin {
+	private static final long serialVersionUID = 1L;
 
 	Simulation sim;
 	

@@ -8,6 +8,7 @@ import javax.swing.*;
 //import presage.demo.SPVAnimatorClick;
 
 public class ProtocolDesigner extends JPanel implements MouseListener {
+	private static final long serialVersionUID = 1L;
 
 	
 	

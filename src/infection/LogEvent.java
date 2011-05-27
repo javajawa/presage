@@ -7,6 +7,7 @@ public interface LogEvent {
 	public long getTime();
 
 	public class VertexInfectedEvent implements LogEvent, java.io.Serializable {
+		private static final long serialVersionUID = 1L;
 
 		@Element
 		String name;
@@ -34,6 +35,7 @@ public interface LogEvent {
 	}
 
 	public class VertexAddEvent implements LogEvent, java.io.Serializable {
+		private static final long serialVersionUID = 1L;
 		@Element
 		String name;
 
@@ -81,6 +83,7 @@ public interface LogEvent {
 	// }
 
 	public class EdgeAddEvent implements LogEvent, java.io.Serializable {
+		private static final long serialVersionUID = 1L;
 		@Element
 		long time;
 

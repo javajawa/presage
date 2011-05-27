@@ -14,6 +14,7 @@ import java.util.*;
 
 
 public class MessageQueue implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	protected LinkedList<Message> queueList;
 	protected String queueName;

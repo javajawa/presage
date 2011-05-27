@@ -4,6 +4,7 @@ import java.util.UUID;
 import presage.Input;
 
 public class SurveyResult implements Input, java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	long timestamp;
 	private String performative = "surveyresult";

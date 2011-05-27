@@ -6,6 +6,7 @@ import java.util.UUID;
 import presage.Message;
 
 public class CptrActRequest extends Message {
+	private static final long serialVersionUID = 1L;
 
 	
 	public CptrActRequest(String to, String from, String toKey, String fromKey, String convType, long timestamp) {

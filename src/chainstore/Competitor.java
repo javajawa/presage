@@ -30,7 +30,8 @@ import presage.environment.messages.ENVDeRegisterRequest;
 import presage.util.StringParseTools;
 import presage.Input;
 
-public class Competitor implements Participant {	
+public class Competitor implements Participant {
+	private static final long serialVersionUID = 1L;
 
 
 	protected Interpreter interpreter;

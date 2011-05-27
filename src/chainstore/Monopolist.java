@@ -31,7 +31,8 @@ import presage.environment.messages.ENVDeRegisterRequest;
 import presage.util.StringParseTools;
 import presage.Input;
 
-public class Monopolist implements Participant {	
+public class Monopolist implements Participant {
+	private static final long serialVersionUID = 1L;
 
 
 	protected Interpreter interpreter;

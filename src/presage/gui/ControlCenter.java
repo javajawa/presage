@@ -50,6 +50,7 @@ import presage.configure.ConfigurationLoader;
 import presage.Participant;
 
 public class ControlCenter extends JFrame  {
+	private static final long serialVersionUID = 1L;
 
 	JLabel m_TimeField = new JLabel();
 	JLabel m_InputFolderField = new JLabel();

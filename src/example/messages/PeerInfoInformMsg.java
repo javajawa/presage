@@ -13,6 +13,7 @@ import example.PeerInfo;
  */
 
 public class PeerInfoInformMsg extends Message {
+	private static final long serialVersionUID = 1L;
 	
 	PeerInfo peerInfo;
 
