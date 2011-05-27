@@ -86,11 +86,11 @@ public class ConfigurationLoader {
 
 	}
 	
-	public static Environment loadEnvironment(File file, Class EnvironmentClass){
+	public static Environment loadEnvironment(File file, Class<? extends Environment> EnvironmentClass){
 		
 		Serializer serializer = new Persister();
 		try{
-			return (Environment)serializer.read(EnvironmentClass, file);
+			return serializer.read(EnvironmentClass, file);
 	
 		} catch (Exception e){System.err.println("loadEnvironment: "  + e);}
 		

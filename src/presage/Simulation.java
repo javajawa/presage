@@ -582,11 +582,11 @@ public class Simulation implements Runnable
 
 		String id;
 
-		Iterator iterator = participantIdSet.iterator();
+		Iterator<String> iterator = participantIdSet.iterator();
 
 		while (iterator.hasNext()) {
-			id = (String) iterator.next();
-			currentDataModel = (PlayerDataModel) playersDataModels.get(id);
+			id = iterator.next();
+			currentDataModel = playersDataModels.get(id);
 			if (currentDataModel.getRoles().contains(role)) {
 				resultSet.add(id);
 			}
@@ -596,7 +596,7 @@ public class Simulation implements Runnable
 	}
 
 	/**Method to return the set of identifiers for the active Participants with a specific role*/
-	public  SortedSet getactiveParticipantIdSet(String role) {
+	public SortedSet<String> getactiveParticipantIdSet(String role) {
 
 		SortedSet<String> resultSet = new TreeSet<String>();
 
@@ -604,11 +604,11 @@ public class Simulation implements Runnable
 
 		String id;
 
-		Iterator iterator = activeParticipantIdSet.iterator();
+		Iterator<String> iterator = activeParticipantIdSet.iterator();
 
 		while (iterator.hasNext()) {
-			id = (String) iterator.next();
-			currentDataModel = (PlayerDataModel) playersDataModels.get(id);
+			id = iterator.next();
+			currentDataModel = playersDataModels.get(id);
 			if (currentDataModel.getRoles().contains(role)) {
 				resultSet.add(id);
 			}
@@ -618,7 +618,7 @@ public class Simulation implements Runnable
 	}
 
 
-	public  SortedSet getParticipantIdSet() {
+	public SortedSet<String> getParticipantIdSet() {
 		return participantIdSet;
 	}
 
@@ -626,7 +626,7 @@ public class Simulation implements Runnable
 		return participantIdSet.size();
 	}
 
-	public TreeMap<String, Participant>  getPlayers(){
+	public TreeMap<String, Participant> getPlayers(){
 		synchronized(players){
 			return players;
 		}
@@ -662,9 +662,9 @@ public class Simulation implements Runnable
 		// System.out.println(Arrays.asList(players.keySet()));
 
 		Participant currentParticipant;
-		Iterator iterator = players.keySet().iterator();
+		Iterator<String> iterator = players.keySet().iterator();
 		while (iterator.hasNext()) {
-			currentParticipant = (Participant) players.get((String) iterator.next());
+			currentParticipant = players.get(iterator.next());
 			currentParticipant.initialise(new EnvironmentConnector(environment));
 		}
 
@@ -696,7 +696,7 @@ public class Simulation implements Runnable
 		} else {
 			activeParticipantIdSet.add(name);
 			Participant currentParticipant;
-			currentParticipant = (Participant) players.get(name);
+			currentParticipant = players.get(name);
 			currentParticipant.onActivation();
 		}
 	}
@@ -715,7 +715,7 @@ public class Simulation implements Runnable
 			activeParticipantIdSet.remove(name);
 			Participant currentParticipant;
 			synchronized (players) {
-				currentParticipant = (Participant) players.get(name);
+				currentParticipant = players.get(name);
 				currentParticipant.onDeActivation();
 			}
 		}
@@ -729,11 +729,11 @@ public class Simulation implements Runnable
 				
 				Participant currentParticipant;
 				String participantId;
-				Iterator iterator = activeParticipantIdSet.iterator();
+				Iterator<String> iterator = activeParticipantIdSet.iterator();
 
 				while (iterator.hasNext()) {
-					participantId =(String) iterator.next();
-					currentParticipant = (Participant) players.get(participantId );
+					participantId = iterator.next();
+					currentParticipant = players.get(participantId);
 					try{
 						currentParticipant.setTime(cycle);
 						playersDataModels.put(participantId, currentParticipant.getInternalDataModel());
@@ -758,11 +758,11 @@ public class Simulation implements Runnable
 			
 			Participant currentParticipant;
 			String participantId;
-			Iterator iterator = activeParticipantIdSet.iterator();
+			Iterator<String> iterator = activeParticipantIdSet.iterator();
 
 			while (iterator.hasNext()) {
-				participantId =(String) iterator.next();
-				currentParticipant = (Participant) players.get(participantId );
+				participantId = iterator.next();
+				currentParticipant = players.get(participantId );
 				try{
 					currentParticipant.execute();
 				} catch (Exception e)
@@ -799,11 +799,11 @@ public class Simulation implements Runnable
 
 		Participant currentParticipant;
 		String participantId;
-		Iterator iterator = activeParticipantIdSet.iterator();
+		Iterator<String> iterator = activeParticipantIdSet.iterator();
 
 		while (iterator.hasNext()) {
-			participantId =(String) iterator.next();
-			currentParticipant = (Participant) players.get(participantId );
+			participantId = iterator.next();
+			currentParticipant = players.get(participantId);
 			try{currentParticipant.onSimulationComplete();} catch (Exception e){System.err.println("Exception caused by " + participantId  + " in method execute() " + e);}
 		}
 

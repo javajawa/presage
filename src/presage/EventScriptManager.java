@@ -54,10 +54,10 @@ public class EventScriptManager {
 		List<ScriptedEvent> removals = new ArrayList<ScriptedEvent>();
 			
 		ScriptedEvent currentEvent;
-		Iterator iterator = events.iterator();
+		Iterator<ScriptedEvent> iterator = events.iterator();
 		while(iterator.hasNext()){
 			
-			currentEvent = (ScriptedEvent)iterator.next();
+			currentEvent = iterator.next();
 			
 			if (currentEvent.executiontime <= time){
 				System.out.println( "ESM executing: " + currentEvent.getShortLabel());
@@ -68,7 +68,7 @@ public class EventScriptManager {
 
 		iterator = removals.iterator();
 		while(iterator.hasNext()){
-			currentEvent = (ScriptedEvent)iterator.next();
+			currentEvent = iterator.next();
 			removeEvent(currentEvent.uuidstring.toString());
 		}
 		
@@ -88,16 +88,16 @@ public class EventScriptManager {
 		Collections.sort(preevents);
 
 		ScriptedEvent currentEvent;
-		Iterator iterator = preevents.iterator();
+		Iterator<ScriptedEvent> iterator = preevents.iterator();
 		while(iterator.hasNext()){
-			currentEvent = (ScriptedEvent)iterator.next();
+			currentEvent = iterator.next();
 				currentEvent.execute(sim);
 				removals.add(currentEvent);
 		}
 		
 		iterator = removals.iterator();
 		while(iterator.hasNext()){
-			currentEvent = (ScriptedEvent)iterator.next();
+			currentEvent = iterator.next();
 			removePreEvent(currentEvent.uuidstring);
 		}
 	}
@@ -113,16 +113,16 @@ public class EventScriptManager {
 		Collections.sort(postevents);
 		
 		ScriptedEvent currentEvent;
-		Iterator iterator = postevents.iterator();
+		Iterator<ScriptedEvent> iterator = postevents.iterator();
 		while(iterator.hasNext()){
-			currentEvent = (ScriptedEvent)iterator.next();
+			currentEvent = iterator.next();
 				currentEvent.execute(sim);
 				removals.add(currentEvent);
 		}
 		
 		iterator = removals.iterator();
 		while(iterator.hasNext()){
-			currentEvent = (ScriptedEvent)iterator.next();
+			currentEvent = iterator.next();
 			removePostEvent(currentEvent.uuidstring);
 		}
 	}

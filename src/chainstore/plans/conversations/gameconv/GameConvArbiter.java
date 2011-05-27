@@ -84,9 +84,9 @@ public class GameConvArbiter extends ConversationMulticastFSM {
 		// System.out.println(mapAsString(to_toKey));
 		
 		// For each specified participant 
-		Iterator iterator = to_toKey.keySet().iterator();
+		Iterator<String> iterator = to_toKey.keySet().iterator();
 		while (iterator.hasNext()){
-			String id = (String)iterator.next();
+			String id = iterator.next();
 			// don't bother sending it to the monopolist
 			if (!id.equals(this.mpstID)){
 				dm.myEnvironment.act( new CptrActRequest(id, dm.myId, to_toKey.get(id), this.myKey, this.type,  dm.getTime()), dm.myId,dm.environmentAuthCode);
@@ -131,9 +131,9 @@ public class GameConvArbiter extends ConversationMulticastFSM {
 		
 		int mpstresult = 0;
 		
-		Iterator it = bids.iterator();
+		Iterator<CptrActResponse> it = bids.iterator();
 		while (it.hasNext()){
-			CptrActResponse cptrresp = (CptrActResponse)it.next();
+			CptrActResponse cptrresp = it.next();
 			// Save this Competitors action
 			if (dm.getCompetitorActions().get(cptrresp.getFrom()) == null)
 				dm.getCompetitorActions().put(cptrresp.getFrom(), new ArrayList<Integer>());
@@ -155,9 +155,9 @@ public class GameConvArbiter extends ConversationMulticastFSM {
 		dm.getAuthorScore().add(new Integer(mpstresult));
 		System.out.println("Saved authors score");
 		
-		it = to_toKey.keySet().iterator();
+		Iterator<String> it2 = to_toKey.keySet().iterator();
 		while (it.hasNext()){
-			String cptrId = (String)it.next();
+			String cptrId = it2.next();
 			//if (!cptrId.equals(this.mpstID)){
 				dm.myEnvironment.act( new ResultInform(cptrId, dm.myId, to_toKey.get(cptrId), this.myKey, this.type,  dm.getTime(), dm.getAuthorActions(), dm.getAuthorScore(), dm.getCompetitorActions(), dm.getCompetitorScore()), dm.myId,dm.environmentAuthCode);		
 			//}
@@ -283,9 +283,9 @@ public class GameConvArbiter extends ConversationMulticastFSM {
 		if (map == null)
 			return null;
 		
-		Iterator iterator = map.keySet().iterator();
+		Iterator<String> iterator = map.keySet().iterator();
 		while (iterator.hasNext()){
-			String id = (String)iterator.next();
+			String id = iterator.next();
 				result += "<" + id  +"/"+  map.get(id) + ">";
 		}
 		

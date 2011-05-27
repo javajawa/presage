@@ -150,6 +150,7 @@ public class ControlCenter extends JFrame  {
 
 
 		PropertyChangeListener eventsChangeListener = new PropertyChangeListener() {
+			@SuppressWarnings("unchecked")
 			public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
 				String property = propertyChangeEvent.getPropertyName();
 
@@ -804,9 +805,9 @@ public class ControlCenter extends JFrame  {
 		Collections.sort(pluginsListElements);
 		
 		// add each of them to the list model in order
-		Iterator iterator = pluginsListElements.iterator();
+		Iterator<OrderedListElement> iterator = pluginsListElements.iterator();
 		while(iterator.hasNext()){
-			OrderedListElement ole = (OrderedListElement)iterator.next();	
+			OrderedListElement ole = iterator.next();	
 			pluginslistmodel.addElement(ole);
 		}	 		
 	}
@@ -818,9 +819,9 @@ public class ControlCenter extends JFrame  {
 		pluginsListElements = new ArrayList<OrderedListElement>();
 		
 		// Add all the plugins a fresh
-		Iterator iterator = plugins.iterator();
+		Iterator<Plugin> iterator = plugins.iterator();
 		while(iterator.hasNext()){
-			addPlugin((Plugin)iterator.next());
+			addPlugin(iterator.next());
 		}
 	}
 
@@ -834,9 +835,9 @@ public class ControlCenter extends JFrame  {
 
 		Collections.sort(activeEvents);
 
-		Iterator iterator = activeEvents.iterator();
+		Iterator<EventListElement> iterator = activeEvents.iterator();
 		while(iterator.hasNext()){
-			EventListElement event = (EventListElement)iterator.next();	
+			EventListElement event = iterator.next();	
 			eventlistmodel.addElement(event);
 		}	 		
 	}
@@ -856,9 +857,9 @@ public class ControlCenter extends JFrame  {
 
 		Collections.sort(events);
 
-		Iterator iterator = events.iterator();
+		Iterator<ScriptedEvent> iterator = events.iterator();
 		while(iterator.hasNext()){
-			ScriptedEvent event = (ScriptedEvent)iterator.next();	
+			ScriptedEvent event = iterator.next();	
 			EventListElement ee = new EventListElement( event.uuidstring, event.executiontime, event.toString() );
 			activeEvents.add(ee);
 			eventlistmodel.addElement(ee);
@@ -1006,7 +1007,7 @@ public class ControlCenter extends JFrame  {
 				System.out.println("Attempting to remove " + ee.uuid +"  "+ ee.time +"  " + ee.label);
 
 				// if first time, construct dialog
-				sim.pluginmanager.removePlugin((Plugin)uuidToPlugin.get(ee.uuid), ee.uuid);
+				sim.pluginmanager.removePlugin(uuidToPlugin.get(ee.uuid), ee.uuid);
 			}
 
 			if (i<1){

@@ -95,9 +95,9 @@ public class QueryResult {
 		return false;
 	}
 
-	public ArrayList colToArrayList(String col_Id) {
+	public ArrayList<Object> colToArrayList(String col_Id) {
 
-		ArrayList list = new ArrayList();
+		ArrayList<Object> list = new ArrayList<Object>();
 		try {
 			resultset.beforeFirst();
 			while (resultset.next()) {

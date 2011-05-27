@@ -87,9 +87,9 @@ public class ChainstoreEvents {
 				return;
 			
 			int compliant = 0;
-			Iterator iterator = dmodel.getCompetitorActions().keySet().iterator();
+			Iterator<String> iterator = dmodel.getCompetitorActions().keySet().iterator();
 			while (iterator.hasNext()) {
-				String cptrId = (String)iterator.next();
+				String cptrId = iterator.next();
 				if (dmodel.getCompetitorActions().get(cptrId).get(dmodel.getCompetitorActions().get(cptrId).size()) == 0)
 					 compliant++;
 			}
@@ -154,7 +154,7 @@ public class ChainstoreEvents {
 			
 			System.out.println();
 			System.out.print("Author Actions, ");
-			Iterator it = dmodel.getAuthorActions().iterator();
+			Iterator<Integer> it = dmodel.getAuthorActions().iterator();
 			while (it.hasNext()) {
 				System.out.print(it.next() + ",");
 			}
@@ -170,15 +170,15 @@ public class ChainstoreEvents {
 			
 			System.out.println();
 			System.out.println();
-			
+
 			TreeMap<String, ArrayList<Integer>> competitorActions = dmodel.getCompetitorActions();
-			
-			it = competitorActions.keySet().iterator();
+
+			Iterator<String> it2 = competitorActions.keySet().iterator();
 			while (it.hasNext()){
-				String cptrId = (String)it.next();
+				String cptrId = it2.next();
 				System.out.print(cptrId + ",");
 				ArrayList<Integer> cptrActs = competitorActions.get(cptrId);
-				Iterator it_cptracts = cptrActs.iterator();
+				Iterator<Integer> it_cptracts = cptrActs.iterator();
 				while (it_cptracts.hasNext()){
 					System.out.print(it_cptracts.next() + ",");
 				}
@@ -190,12 +190,12 @@ public class ChainstoreEvents {
 			
 			TreeMap<String, ArrayList<Integer>> competitorScores = dmodel.getCompetitorScore();
 			
-			it = competitorScores.keySet().iterator();
+			it2 = competitorScores.keySet().iterator();
 			while (it.hasNext()){
-				String cptrId = (String)it.next();
+				String cptrId = it2.next();
 				System.out.print(cptrId + ",");
 				ArrayList<Integer> scores = competitorScores.get(cptrId);
-				Iterator it_cptrscores = scores.iterator();
+				Iterator<Integer> it_cptrscores = scores.iterator();
 				while (it_cptrscores.hasNext()){
 					System.out.print(it_cptrscores.next() + ",");
 				}
@@ -240,7 +240,7 @@ public class ChainstoreEvents {
 			
 			out.write("Author Actions, ");
 			
-			Iterator it = dmodel.getAuthorActions().iterator();
+			Iterator<Integer> it = dmodel.getAuthorActions().iterator();
 			while (it.hasNext()) {
 				out.write(it.next() + ",");
 			}
@@ -256,16 +256,16 @@ public class ChainstoreEvents {
 			
 			out.newLine();
 			out.newLine();
-			
-			
+
+
 			TreeMap<String, ArrayList<Integer>> competitorActions = dmodel.getCompetitorActions();
-			
-			it = competitorActions.keySet().iterator();
-			while (it.hasNext()){
-				String cptrId = (String)it.next();
+
+			Iterator<String> it2 = competitorActions.keySet().iterator();
+			while (it2.hasNext()){
+				String cptrId = it2.next();
 				out.write(cptrId + ",");
 				ArrayList<Integer> cptrActs = competitorActions.get(cptrId);
-				Iterator it_cptracts = cptrActs.iterator();
+				Iterator<Integer> it_cptracts = cptrActs.iterator();
 				while (it_cptracts.hasNext()){
 					out.write(it_cptracts.next() + ",");
 				}
@@ -277,12 +277,12 @@ public class ChainstoreEvents {
 			
 			TreeMap<String, ArrayList<Integer>> competitorScores = dmodel.getCompetitorScore();
 			
-			it = competitorScores.keySet().iterator();
+			it2 = competitorScores.keySet().iterator();
 			while (it.hasNext()){
-				String cptrId = (String)it.next();
+				String cptrId = it2.next();
 				out.write(cptrId + ",");
 				ArrayList<Integer> scores = competitorScores.get(cptrId);
-				Iterator it_cptrscores = scores.iterator();
+				Iterator<Integer> it_cptrscores = scores.iterator();
 				while (it_cptrscores.hasNext()){
 					out.write(it_cptrscores.next() + ",");
 				}

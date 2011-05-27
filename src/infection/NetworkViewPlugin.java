@@ -67,8 +67,8 @@ public class NetworkViewPlugin extends JPanel implements Plugin {
 	
 	Vertex v_prev = null;
 
-	TreeMap vertexes = new TreeMap();
-	TreeMap edges = new TreeMap();
+	TreeMap<String, Vertex> vertexes = new TreeMap<String, Vertex>();
+	TreeMap<String, DirectedSparseEdge> edges = new TreeMap<String, DirectedSparseEdge>();
 	
 	// RandomAccessFile participantsFile;
 	
@@ -101,9 +101,9 @@ public class NetworkViewPlugin extends JPanel implements Plugin {
 			vertexes.clear();
 			edges.clear();
 			
-		Iterator it = events.iterator();
+		Iterator<LogEvent> it = events.iterator();
 			while (it.hasNext()){
-				LogEvent le = (LogEvent)it.next();
+				LogEvent le = it.next();
 				// if(le.getTime() == dmodel.time)
 					handle(le);
 			}	
@@ -141,7 +141,7 @@ public class NetworkViewPlugin extends JPanel implements Plugin {
 	
 	protected void handleVertexInfectedEvent(VertexInfectedEvent event){
 		System.out.println(event.time + " Vertex infected Event " + event.name);
-		((Vertex)vertexes.get(event.name)).setUserDatum("color", selectColor(true, false), UserData.CLONE);
+		(vertexes.get(event.name)).setUserDatum("color", selectColor(true, false), UserData.CLONE);
 	}
 	
 	protected void handleVertexAddEvent(VertexAddEvent event){
@@ -161,8 +161,8 @@ public class NetworkViewPlugin extends JPanel implements Plugin {
 		
 		System.out.println(event.time + " EdgeAddEvent " + event.from + ", " + event.to);
 		
-		Vertex v1 = (Vertex)vertexes.get(event.from);
-		Vertex v2 = (Vertex)vertexes.get(event.to);
+		Vertex v1 = vertexes.get(event.from);
+		Vertex v2 = vertexes.get(event.to);
 
 		DirectedSparseEdge e0 = new DirectedSparseEdge(v1, v2);
 

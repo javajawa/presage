@@ -544,9 +544,9 @@ public class ExampleWorld extends AbstractEnvironment {
 
 
 			// clear the peers connectivity data
-			Iterator iterator = dmodel.playermodels.keySet().iterator();	
+			Iterator<String> iterator = dmodel.playermodels.keySet().iterator();	
 			while (iterator.hasNext()){
-				String partId = (String)iterator.next();
+				String partId = iterator.next();
 				dmodel.playermodels.get(partId).newconnections = new ArrayList<String>();
 				dmodel.playermodels.get(partId).disconnections = new ArrayList<String>();
 			}
@@ -590,10 +590,10 @@ public class ExampleWorld extends AbstractEnvironment {
 	protected void updatePerceptions() {
 
 		try{
-			Iterator iterator = dmodel.playermodels.keySet().iterator();
+			Iterator<String> iterator = dmodel.playermodels.keySet().iterator();
 
 			while (iterator.hasNext()){
-				String participantid = (String)iterator.next();
+				String participantid = iterator.next();
 
 //				this.participantInputs.get(participantid).add(new PointsInput(dmodel.playermodels.get(participantid).points, dmodel.time));
 //				

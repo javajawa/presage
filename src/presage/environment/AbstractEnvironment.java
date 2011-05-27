@@ -111,9 +111,9 @@ public abstract class AbstractEnvironment implements Environment {
 
 	protected void executeQueuedActions(){
 
-		Iterator iterator = authenticator.keySet().iterator();
+		Iterator<String> iterator = authenticator.keySet().iterator();
 		while (iterator.hasNext()){
-			participantInputs.put((String)iterator.next(), new ArrayList<Input>());
+			participantInputs.put(iterator.next(), new ArrayList<Input>());
 		}
 
 		while (!queuedActions.isEmpty()){ // while there are any actions left to process
@@ -201,10 +201,10 @@ public abstract class AbstractEnvironment implements Environment {
 		
 		ArrayList<ActionHandler> canhandle = new ArrayList<ActionHandler>();
 
-		Iterator it = actionhandlers.iterator();
+		Iterator<ActionHandler> it = actionhandlers.iterator();
 
 		while (it.hasNext()){
-			ActionHandler ah = (ActionHandler)it.next();
+			ActionHandler ah = it.next();
 			if (ah.canHandle(action))
 				canhandle.add(ah);
 		}

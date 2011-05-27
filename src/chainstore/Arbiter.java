@@ -131,12 +131,12 @@ public class Arbiter implements Participant {
 			
 			System.out.println("Starting cfp");
 			
-			ArrayList al = dm.getContactsofRole("competitor");
+			ArrayList<String> al = dm.getContactsofRole("competitor");
 			TreeMap<String, String> to = new TreeMap<String, String>();
 			
-			Iterator it = al.iterator();
+			Iterator<String> it = al.iterator();
 			while (it.hasNext()){
-				String id = (String)it.next(); 
+				String id = it.next();
 				System.out.println(id);
 				to.put(id, null);		
 			}

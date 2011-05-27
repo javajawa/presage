@@ -52,9 +52,9 @@ public class SensorFusion extends Plan {
 			
 			ConnectionsInput ci = (ConnectionsInput)input;
 			
-			Iterator it = ci.getConnections().iterator();
+			Iterator<String> it = ci.getConnections().iterator();
 			while (it.hasNext()){
-				String theirId = (String)it.next();
+				String theirId = it.next();
 				
 				if(dm == null){
 					System.err.println("SensorFusion datamodel is null!");

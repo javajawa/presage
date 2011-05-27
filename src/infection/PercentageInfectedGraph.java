@@ -80,7 +80,7 @@ public class PercentageInfectedGraph extends JPanel implements Plugin {
 
 		int n = dm.playermodels.size();
 		int infected = 0;
-		Iterator iterator = dm.playermodels.keySet().iterator();
+		Iterator<String> iterator = dm.playermodels.keySet().iterator();
 		while (iterator.hasNext()) {
 			if (dm.playermodels.get(iterator.next()).infected)
 				infected++;

@@ -51,10 +51,10 @@ public class ExampleEnvironmentViewer extends JPanel implements Plugin {
 		drawPhysicalNetwork(g);
 
 		EnvPlayerModel player;
-		Iterator iterator = dmodel.playermodels.keySet().iterator();
+		Iterator<String> iterator = dmodel.playermodels.keySet().iterator();
 
 		while (iterator.hasNext()) {
-			player = (EnvPlayerModel) dmodel.playermodels.get((String) iterator.next());
+			player = dmodel.playermodels.get(iterator.next());
 			drawParticipant(g, player);
 		}
 	}
@@ -82,9 +82,9 @@ public class ExampleEnvironmentViewer extends JPanel implements Plugin {
 		g.fillOval(pm.positionX - 5, pm.positionY - 5, 10, 10);
 
 		color = goalColor;
-		Iterator iterator = pm.targets.iterator();
+		Iterator<Target> iterator = pm.targets.iterator();
 		while (iterator.hasNext()) {
-			Target goal = (Target)iterator.next();
+			Target goal = iterator.next();
 			g.drawRect(goal.getRegion().x, goal.getRegion().y, goal.getRegion().width, goal.getRegion().height);
 			g.drawString("Goal: "+ goal.getOwner() + "<"+ goal.getRegion().x + ", "+ goal.getRegion().y + ">", (goal.getRegion().x), (goal.getRegion().y));
 		}

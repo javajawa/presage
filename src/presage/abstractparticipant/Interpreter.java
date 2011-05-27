@@ -29,9 +29,9 @@ public class Interpreter {
 
 		System.out.println("Plans.length = " + plans.size());
 
-		Iterator it_plans = plans.iterator(); 
+		Iterator<Plan> it_plans = plans.iterator(); 
 		while (it_plans.hasNext()){	
-			Plan temp = (Plan)it_plans.next();
+			Plan temp = it_plans.next();
 			System.out.println(temp.toString());
 		}
 
@@ -51,18 +51,18 @@ public class Interpreter {
 
 	public void addInput(ArrayList<Input> input){
 		// add them all to the inputs.
-		Iterator iterator = input.iterator();
+		Iterator<Input> iterator = input.iterator();
 		while(iterator.hasNext()){
-			inputs.enqueue((Input)iterator.next());
+			inputs.enqueue(iterator.next());
 		}
 	}
 
 	public void handleTimeouts(long time){
 
-		Iterator it_plans = plans.iterator(); 
+		Iterator<Plan> it_plans = plans.iterator(); 
 		while (it_plans.hasNext()){	
 			
-			Plan temp = (Plan)it_plans.next();
+			Plan temp = it_plans.next();
 
 			if (temp.isTimedOut(time)){
 			 	this.addInput(new Signal(Plan.TIME_OUT, temp.getMyKey(), time));
@@ -75,9 +75,9 @@ public class Interpreter {
 
 		int result = 0;
 		
-		Iterator it_plans = plans.iterator(); 
+		Iterator<Plan> it_plans = plans.iterator(); 
 		while (it_plans.hasNext()){	
-			Plan temp = (Plan)it_plans.next();
+			Plan temp = it_plans.next();
 			
 			// System.out.println(temp.toString());
 			
@@ -98,7 +98,7 @@ public class Interpreter {
 		try {
 
 			while (!inputs.isEmpty()) {
-				Input inputReceived = (Input) inputs.dequeue();
+				Input inputReceived = inputs.dequeue();
 
 				if (inputReceived == null)
 					continue;
@@ -110,9 +110,9 @@ public class Interpreter {
 				// Have to check with all the plans if they can/will handle the input
 				ArrayList<Plan> canHandleInput = new ArrayList<Plan>();
 
-				Iterator it_plans = plans.iterator(); 
+				Iterator<Plan> it_plans = plans.iterator(); 
 				while (it_plans.hasNext()){	
-					Plan temp = (Plan)it_plans.next();
+					Plan temp = it_plans.next();
 					try {
 						if (temp.canHandle(inputReceived))
 							canHandleInput.add(temp);
@@ -127,15 +127,15 @@ public class Interpreter {
 				// the Plan.inhibits() method allows us to do resource control
 				ArrayList<Plan> notinhibited = new ArrayList<Plan>();
 				// So for all the methods that can handle the input check which inhibit which
-				Iterator it_canhandle = canHandleInput.iterator(); 
+				Iterator<Plan> it_canhandle = canHandleInput.iterator(); 
 
 				while (it_canhandle.hasNext()){
 					boolean inhibited = false;
-					Plan p0 = (Plan)it_canhandle.next();
+					Plan p0 = it_canhandle.next();
 					// by calling all the current plans .inhibits() method
 					it_plans = canHandleInput.iterator();
 					while (it_plans.hasNext()){
-						Plan p1 = (Plan)it_plans.next();
+						Plan p1 = it_plans.next();
 						// if they are the same plan they they may inhibit each other!
 						if(p1.equals(p0))
 							continue;

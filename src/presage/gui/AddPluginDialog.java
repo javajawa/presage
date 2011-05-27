@@ -103,7 +103,7 @@ public class AddPluginDialog extends JPanel implements TreeSelectionListener
 							parametervalues[i] =Long.parseLong(parameterfields[i].getText());
 						} else {
 							try{
-								Constructor<?> ct = c.getConstructor(new Class[]{String.class});
+								Constructor<?> ct = c.getConstructor(String.class);
 								parametervalues[i] = ct.newInstance(new Object[]{parameterfields[i].getText()});
 
 							} catch (Exception e){
@@ -123,7 +123,7 @@ public class AddPluginDialog extends JPanel implements TreeSelectionListener
 					
 					
 					
-					Class c = Class.forName(cinfo.classname);
+					Class<?> c = Class.forName(cinfo.classname);
 					Constructor<?> ct = c.getConstructor(cinfo.parameterclasses);
 					
 					plugin = (Plugin)ct.newInstance(parametervalues);
@@ -176,7 +176,7 @@ public class AddPluginDialog extends JPanel implements TreeSelectionListener
 //		}
 //	}
 	
-	public boolean checkAnnotation(Class classObject, AnnotatedElement[] elts, DefaultMutableTreeNode top){
+	public boolean checkAnnotation(Class<?> classObject, AnnotatedElement[] elts, DefaultMutableTreeNode top){
 		boolean result = false;
 		for(AnnotatedElement e : elts) { 
 			if (checkAnnotation(classObject, e, top))
@@ -185,7 +185,7 @@ public class AddPluginDialog extends JPanel implements TreeSelectionListener
 		return result;
 	}
 
-	public boolean checkAnnotation(Class classObject, AnnotatedElement e, DefaultMutableTreeNode top){
+	public boolean checkAnnotation(Class<?> classObject, AnnotatedElement e, DefaultMutableTreeNode top){
 
 		if (e == null){
 			// System.out.println("DEBUG null"); 

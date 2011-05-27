@@ -113,13 +113,13 @@ public class FullyConnectedWorld extends AbstractEnvironment {
 
 		ExampleRegistrationObject ero = (ExampleRegistrationObject)registrationObject;
 
-		Iterator iterator = dmodel.playermodels.keySet().iterator();	
+		Iterator<String> iterator = dmodel.playermodels.keySet().iterator();	
 
 		// So for all the existing players inform them that a new player has connected
 		// afterall this is the fully connected world so no need to calculate anything.
 
 		while (iterator.hasNext()){
-			String participantid = (String)iterator.next();
+			String participantid = iterator.next();
 			dmodel.playermodels.get(participantid).newconnections.add(ero.getParticipantID());
 		}
 
@@ -145,9 +145,9 @@ public class FullyConnectedWorld extends AbstractEnvironment {
 	@Override
 	protected void updatePerceptions() {
 
-		Iterator iterator = dmodel.playermodels.keySet().iterator();	
+		Iterator<String> iterator = dmodel.playermodels.keySet().iterator();	
 		while (iterator.hasNext()){
-			String participantid = (String)iterator.next();
+			String participantid = iterator.next();
 
 			//dmodel.getTime();
 			

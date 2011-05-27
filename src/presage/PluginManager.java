@@ -43,9 +43,9 @@ public class PluginManager {
 //			initialise();
 		
 
-		Iterator iterator = plugins.iterator();
+		Iterator<Plugin> iterator = plugins.iterator();
 		while(iterator.hasNext()){
-			((Plugin)iterator.next()).execute();
+			(iterator.next()).execute();
 		}
 	}
 
@@ -55,9 +55,9 @@ public class PluginManager {
 	
 	public synchronized void onSimulationComplete(){
 		
-		Iterator iterator = plugins.iterator();
+		Iterator<Plugin> iterator = plugins.iterator();
 		while(iterator.hasNext()){
-			((Plugin)iterator.next()).onSimulationComplete();
+			(iterator.next()).onSimulationComplete();
 		}
 	} 
 
@@ -67,9 +67,9 @@ public class PluginManager {
 		// go through the map and initialise the plugins
 
 		Plugin currentPlugin;
-		Iterator iterator = plugins.iterator();
+		Iterator<Plugin> iterator = plugins.iterator();
 		while(iterator.hasNext()){
-			currentPlugin = (Plugin)iterator.next();
+			currentPlugin = iterator.next();
 			currentPlugin.initialise(sim);
 
 //			if (currentPlugin.getUUID() == null)

@@ -49,7 +49,7 @@ public abstract class ConversationMulticastMultiRole extends Conversation {
 		ArrayList<String> ids = new ArrayList<String>();
 		int index = 0;
 		
-		Iterator it = theirRoles.iterator();
+		Iterator<String> it = theirRoles.iterator();
 		while(it.hasNext()){
 			if (it.next().equals(role))
 				ids.add(theirIds.get(index));

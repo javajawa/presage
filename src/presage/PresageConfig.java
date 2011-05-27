@@ -50,7 +50,7 @@ public class PresageConfig {
 	private String eventscriptconfigpath;
 	
 	@Element
-	private Class environmentclass;
+	private Class<? extends Environment> environmentclass;
 	
 	@Element
 	private String environmentconfigpath;
@@ -75,7 +75,7 @@ public class PresageConfig {
 	public boolean getAutorun(){return autorun;}
 //	public int getPresagePort(){return presageport;}
 	public int getThreadDelay(){return threaddelay;}
-	public Class getEnvironmentClass(){return environmentclass;}	
+	public Class<? extends Environment> getEnvironmentClass(){return environmentclass;}	
 	public String getParticipantsConfigPath(){return participantsconfigpath;}
 	public String getPluginsConfigPath(){return pluginsconfigpath;}
 	public String getEventscriptConfigPath(){return eventscriptconfigpath;}
@@ -97,7 +97,7 @@ public class PresageConfig {
 	public void setAutorun(boolean autorun){this.autorun = autorun;}
 //	public void setPresagePort(int presageport){this.presageport = presageport;}
 	public void setThreadDelay(int threaddelay){this.threaddelay = threaddelay;}
-	public void setEnvironmentClass(Class environmentclass){this.environmentclass = environmentclass;}
+	public void setEnvironmentClass(Class<? extends Environment> environmentclass){this.environmentclass = environmentclass;}
 	public void setParticipantsConfigPath(String participantsconfigpath){this.participantsconfigpath = participantsconfigpath;}
 	public void setPluginsConfigPath( String  pluginsconfigpath){this.pluginsconfigpath = pluginsconfigpath;}
 	public void setEventscriptConfigPath(String  methodscriptconfigpath){this.eventscriptconfigpath = methodscriptconfigpath;}

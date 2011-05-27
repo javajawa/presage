@@ -91,9 +91,9 @@ public class ChainDataModel extends APlayerDataModel {
 	public String contactsAsString(){
 		String result = "";
 		
-		Iterator iterator = contactsToRoles.keySet().iterator();
+		Iterator<String> iterator = contactsToRoles.keySet().iterator();
 		while (iterator.hasNext()){
-			String id = (String)iterator.next();
+			String id = iterator.next();
 				result += "<" + id  +  contactsToRoles.get(id).toString() + ">";
 		}
 		
@@ -107,9 +107,9 @@ public class ChainDataModel extends APlayerDataModel {
 
 		ArrayList<String> result = new ArrayList<String>();
 
-		Iterator iterator = contactsToRoles.keySet().iterator();
+		Iterator<String> iterator = contactsToRoles.keySet().iterator();
 		while (iterator.hasNext()){
-			String id = (String)iterator.next();
+			String id = iterator.next();
 			if (contactsToRoles.get(id).contains(role))
 				result.add(id);
 		}
@@ -120,7 +120,7 @@ public class ChainDataModel extends APlayerDataModel {
 
 		ArrayList<String> myRoleContacts = getContactsofRole(role);
 
-		Iterator iterator = myRoleContacts.iterator();
+		Iterator<String> iterator = myRoleContacts.iterator();
 		while (iterator.hasNext())
 			if (contactConnectedList.contains(iterator.next()))
 				return true;

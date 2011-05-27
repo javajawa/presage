@@ -208,9 +208,9 @@ public class GameConvMonopolist extends ConversationSingleFSM {
 		if (map == null)
 			return null;
 		
-		Iterator iterator = map.keySet().iterator();
+		Iterator<String> iterator = map.keySet().iterator();
 		while (iterator.hasNext()){
-			String id = (String)iterator.next();
+			String id = iterator.next();
 				result += "<" + id  +  map.get(id) + ">";
 		}
 		

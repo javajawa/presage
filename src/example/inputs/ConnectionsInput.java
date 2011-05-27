@@ -9,9 +9,9 @@ public class ConnectionsInput implements Input {
 	
 	private long timestamp;
 	
-	private ArrayList connections;
+	private ArrayList<String> connections;
 	
-	public ConnectionsInput(ArrayList connections, long time) {
+	public ConnectionsInput(ArrayList<String> connections, long time) {
 		// TODO Auto-generated constructor stub
 		this.connections = connections;
 		this.timestamp = time;
@@ -31,7 +31,7 @@ public class ConnectionsInput implements Input {
 		this.timestamp = timestamp;
 	}
 
-	public ArrayList getConnections() {
+	public ArrayList<String> getConnections() {
 		return connections;
 	}
 

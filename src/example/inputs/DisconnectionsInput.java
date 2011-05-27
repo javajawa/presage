@@ -9,10 +9,10 @@ public class DisconnectionsInput implements Input {
 
 	private long timestamp;
 	
-	private ArrayList disconnections;
+	private ArrayList<String> disconnections;
 	
 	
-	public DisconnectionsInput(ArrayList disconnections, long time) {
+	public DisconnectionsInput(ArrayList<String> disconnections, long time) {
 		// TODO Auto-generated constructor stub
 		this.disconnections = disconnections;
 		this.timestamp = time;
@@ -32,7 +32,7 @@ public class DisconnectionsInput implements Input {
 		this.timestamp = timestamp;
 	}
 
-	public ArrayList getDisconnections() {
+	public ArrayList<String> getDisconnections() {
 		return disconnections;
 	}
 

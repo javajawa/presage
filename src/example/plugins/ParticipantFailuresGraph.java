@@ -116,9 +116,9 @@ public class ParticipantFailuresGraph extends JPanel implements Plugin {
 
 		synchronized(this){
 
-			Iterator iterator = dmodel.playermodels.keySet().iterator();
+			Iterator<String> iterator = dmodel.playermodels.keySet().iterator();
 			while (iterator.hasNext()){
-				String id = (String)iterator.next();
+				String id = iterator.next();
 				XYSeries series;
 				try {
 					series = data.getSeries(id);

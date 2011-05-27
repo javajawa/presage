@@ -159,9 +159,9 @@ public class StaticWorld extends AbstractEnvironment {
 	@Override
 	protected void updatePerceptions() {
 
-		Iterator iterator = dmodel.playermodels.keySet().iterator();
+		Iterator<String> iterator = dmodel.playermodels.keySet().iterator();
 		while (iterator.hasNext()) {
-			String participantid = (String) iterator.next();
+			String participantid = iterator.next();
 
 			// You can also send other data to the individual agents
 			// here........
@@ -193,9 +193,9 @@ public class StaticWorld extends AbstractEnvironment {
 
 		// Get a list of those currently infected
 		ArrayList<InfEnvPlayerRecord> infected = new ArrayList<InfEnvPlayerRecord>();
-		Iterator it = dmodel.playermodels.keySet().iterator();
+		Iterator<String> it = dmodel.playermodels.keySet().iterator();
 		while (it.hasNext()) {
-			String id = (String) it.next();
+			String id = it.next();
 			InfEnvPlayerRecord record = dmodel.playermodels.get(id);
 			if (record.infected)
 				infected.add(record);
@@ -206,17 +206,17 @@ public class StaticWorld extends AbstractEnvironment {
 //		}
 
 		// go though the list of infected
-		it = infected.iterator();
-		while (it.hasNext()) {
-			String host = ((InfEnvPlayerRecord) it.next()).participantId;
+		Iterator<InfEnvPlayerRecord> it2 = infected.iterator();
+		while (it2.hasNext()) {
+			String host = it2.next().participantId;
 			// get those that are connected to the infected host
 			int hostindex = dmodel.vertices.indexOf(host);
 			ArrayList<StaticEnvDataModel.Edge> edges = dmodel.edges
 					.get(hostindex);
-			Iterator it2 = edges.iterator();
-			while (it2.hasNext()) {
+			Iterator<StaticEnvDataModel.Edge> it3 = edges.iterator();
+			while (it3.hasNext()) {
 				
-				StaticEnvDataModel.Edge edge = (StaticEnvDataModel.Edge) it2.next();
+				StaticEnvDataModel.Edge edge = it3.next();
 				
 				if (edge.connected) {					
 					// and if they aren't infected or secure then infect them

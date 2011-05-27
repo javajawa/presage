@@ -270,7 +270,7 @@ public abstract class AbstractBDIParticipant implements Participant {
 	protected void processInputs() {
 		
 		while (!inputs.isEmpty()) {
-			Input inputReceived = (Input) inputs.dequeue();
+			Input inputReceived = inputs.dequeue();
 			System.out.println(myId + " received :" + inputReceived.toString());
 			
 			// Now what!!
@@ -419,9 +419,9 @@ public abstract class AbstractBDIParticipant implements Participant {
 	public void enqueueInput(ArrayList<Input> input){
 		
 		// add them all to the inputs.
-		Iterator iterator = input.iterator();
+		Iterator<Input> iterator = input.iterator();
 		while(iterator.hasNext()){
-			inputs.enqueue((Input)iterator.next());
+			inputs.enqueue(iterator.next());
 		}
 	}
 	

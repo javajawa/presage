@@ -313,13 +313,10 @@ public class ReconAgent implements Participant {
 //	}
 //	}
 
-	public class TargetDistanceComparator implements java.util.Comparator {
+	public class TargetDistanceComparator implements java.util.Comparator<Target> {
 
 		@Override
-		public int compare(Object obj0 , Object obj1) {
-
-			Target target0 = (Target) obj0;
-			Target target1 = (Target) obj1;
+		public int compare(final Target target0, final Target target1) {
 
 			// calculate the distances
 			Point vector0 = vectorToRegion(target0.getRegion(), dm.positionX, dm.positionY);
@@ -610,10 +607,10 @@ public class ReconAgent implements Participant {
 
 
 				// When you newly connect or reconnect the agent should update position and roles etc so....
-				Iterator iterator = newconnections.iterator();
+				Iterator<String> iterator = newconnections.iterator();
 				while (iterator.hasNext()){
 
-					dm.myEnvironment.act(new PeerInfoInformMsg((String)iterator.next(), dm.myId, null, UUID.randomUUID().toString(), dm.time, dm.roles , dm.positionX, dm.positionY), dm.myId, dm.environmentAuthCode);
+					dm.myEnvironment.act(new PeerInfoInformMsg(iterator.next(), dm.myId, null, UUID.randomUUID().toString(), dm.time, dm.roles , dm.positionX, dm.positionY), dm.myId, dm.environmentAuthCode);
 
 				}
 
@@ -741,10 +738,10 @@ public class ReconAgent implements Participant {
 			
 			ArrayList<InputHandler> canhandle = new ArrayList<InputHandler>();
 
-			Iterator it = inputhandlers.iterator();
+			Iterator<InputHandler> it = inputhandlers.iterator();
 
 			while (it.hasNext()){
-				InputHandler ih = (InputHandler)it.next();
+				InputHandler ih = it.next();
 				if (ih.canHandle(input))
 					canhandle.add(ih);
 			}
@@ -847,10 +844,10 @@ public class ReconAgent implements Participant {
 
 			System.out.print(dm.myId + ": My targets = ");
 
-			Iterator iterator = dm.myTargets.iterator();
+			Iterator<Target> iterator = dm.myTargets.iterator();
 			while (iterator.hasNext()){
 
-				Target target = (Target)iterator.next();
+				Target target = iterator.next();
 				System.out.print(target.toString());
 
 				// see if its the next target to move towards
@@ -884,9 +881,9 @@ public class ReconAgent implements Participant {
 	
 	private SurveyResult getSurveyForTarget(Target target){
 
-		Iterator iterator = dm.mySurveys.iterator();
+		Iterator<SurveyResult> iterator = dm.mySurveys.iterator();
 		while (iterator.hasNext()) {
-			SurveyResult result = (SurveyResult)iterator.next();
+			SurveyResult result = iterator.next();
 			if (target.getRegion().contains(result.x, result.y))
 				return result;
 		}
@@ -985,9 +982,9 @@ public class ReconAgent implements Participant {
 
 		ArrayList<String> result = new ArrayList<String>();
 
-		Iterator iterator = dm.contactsToRoles.keySet().iterator();
+		Iterator<String> iterator = dm.contactsToRoles.keySet().iterator();
 		while (iterator.hasNext()){
-			String id = (String)iterator.next();
+			String id = iterator.next();
 			if (dm.contactsToRoles.get(id).contains(role))
 				result.add(id);
 		}
@@ -1001,7 +998,7 @@ public class ReconAgent implements Participant {
 
 		ArrayList<String> myRoleContacts = getContactsofRole(role);
 
-		Iterator iterator = myRoleContacts.iterator();
+		Iterator<String> iterator = myRoleContacts.iterator();
 		while (iterator.hasNext())
 			if (dm.contactConnectedList.contains(iterator.next()))
 				return true;
@@ -1028,9 +1025,9 @@ public class ReconAgent implements Participant {
 	public void enqueueInput(ArrayList<Input> input){
 		
 		// add them all to the inputs.
-		Iterator iterator = input.iterator();
+		Iterator<Input> iterator = input.iterator();
 		while(iterator.hasNext()){
-			inputs.enqueue((Input)iterator.next());
+			inputs.enqueue(iterator.next());
 		}
 	}
 	

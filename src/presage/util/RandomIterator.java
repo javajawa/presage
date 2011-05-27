@@ -5,31 +5,33 @@ public class RandomIterator {
 
 	private Random random;
 
-	ArrayList set;
+	ArrayList<String> set;
 
-	public RandomIterator(SortedSet s, int randomseed) {
-		set = new ArrayList(s);
+	public RandomIterator(SortedSet<String> s, int randomseed) {
+		set = new ArrayList<String>(s);
 		this.random	= new Random(randomseed);
 
 	}
 
-	public RandomIterator(ArrayList s, int randomseed) {
-		set = (ArrayList)s.clone();
+	@SuppressWarnings("unchecked")
+	public RandomIterator(ArrayList<String> s, int randomseed) {
+		set = (ArrayList<String>)s.clone();
 		this.random	= new Random(randomseed);
 	}
 
-	public RandomIterator(SortedSet s, long randomseed) {
-		set = new ArrayList(s);
+	public RandomIterator(SortedSet<String> s, long randomseed) {
+		set = new ArrayList<String>(s);
 		this.random	= new Random(randomseed);
 
 	}
 
-	public RandomIterator(ArrayList s, long randomseed) {
-		set = (ArrayList)s.clone();
+	@SuppressWarnings("unchecked")
+	public RandomIterator(ArrayList<String> s, long randomseed) {
+		set = (ArrayList<String>)s.clone();
 		this.random	= new Random(randomseed);
 	}
 
-	public void removeElement(Object x){
+	public void removeElement(String x){
 		set.remove(x);
 	}
 

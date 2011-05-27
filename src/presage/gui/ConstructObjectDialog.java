@@ -107,7 +107,7 @@ public class ConstructObjectDialog extends JPanel implements TreeSelectionListen
 							parametervalues[i] =Long.parseLong(parameterfields[i].getText());
 						} else {
 							try{
-								Constructor<?> ct = c.getConstructor(new Class[]{String.class});
+								Constructor<?> ct = c.getConstructor(String.class);
 								parametervalues[i] = ct.newInstance(new Object[]{parameterfields[i].getText()});
 
 							} catch (Exception e){
@@ -124,7 +124,7 @@ public class ConstructObjectDialog extends JPanel implements TreeSelectionListen
 				}
 				
 				try{
-					Class c = Class.forName(cinfo.classname);
+					Class<?> c = Class.forName(cinfo.classname);
 					Constructor<?> ct = c.getConstructor(cinfo.parameterclasses);
 					
 					plugin = (Plugin)ct.newInstance(parametervalues);
@@ -175,7 +175,7 @@ public class ConstructObjectDialog extends JPanel implements TreeSelectionListen
 //		}
 //	}
 	
-	public boolean checkAnnotation(Class classObject, AnnotatedElement[] elts, DefaultMutableTreeNode top){
+	public boolean checkAnnotation(Class<?> classObject, AnnotatedElement[] elts, DefaultMutableTreeNode top){
 		boolean result = false;
 		for(AnnotatedElement e : elts) { 
 			if (checkAnnotation(classObject, e, top))
@@ -184,7 +184,7 @@ public class ConstructObjectDialog extends JPanel implements TreeSelectionListen
 		return result;
 	}
 
-	public boolean checkAnnotation(Class classObject, AnnotatedElement e, DefaultMutableTreeNode top){
+	public boolean checkAnnotation(Class<?> classObject, AnnotatedElement e, DefaultMutableTreeNode top){
 
 		if (e == null){
 			// System.out.println("DEBUG null"); 
