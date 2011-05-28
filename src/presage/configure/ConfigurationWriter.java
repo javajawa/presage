@@ -29,8 +29,10 @@ public class ConfigurationWriter {
 	}
 
 
+
 	public static void writePresageConfig(PresageConfig presageConfig, File file){
 		try {
+			file.getParentFile().mkdirs();
 			file.createNewFile();
 			Serializer serializer = new Persister();
 			serializer.write(presageConfig, file);
@@ -45,6 +47,7 @@ public class ConfigurationWriter {
 		ParticipantWrapper parts = new ParticipantWrapper(players);
 
 		try {
+			file.getParentFile().mkdirs();
 			file.createNewFile();
 			Serializer serializer = new Persister();
 			serializer.write(parts, file);
@@ -70,6 +73,7 @@ public class ConfigurationWriter {
 
 	public static void writePluginManager(PluginManager pm, File file){
 		try {
+			file.getParentFile().mkdirs();
 			file.createNewFile();
 			Serializer serializer = new Persister();
 			serializer.write(pm, file);
@@ -83,6 +87,7 @@ public class ConfigurationWriter {
 	public static void writeEventScriptManager(EventScriptManager ms, File file){
 
 		try {
+			file.getParentFile().mkdirs();
 			file.createNewFile();
 			Serializer serializer = new Persister();
 			serializer.write(ms, file);
@@ -97,6 +102,7 @@ public class ConfigurationWriter {
 	public static void writeEnvironment(Environment environment, File file){
 
 		try {
+			file.getParentFile().mkdirs();
 			file.createNewFile();
 			Serializer serializer = new Persister();
 			serializer.write(environment, file);
