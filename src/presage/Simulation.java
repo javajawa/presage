@@ -120,9 +120,9 @@ public class Simulation implements Runnable
 
 	public  TreeMap<String,Participant> players = new TreeMap<String, Participant>();
 
-	private  SortedSet<String> participantIdSet = new TreeSet<String>();
+	private  TreeSet<String> participantIdSet = new TreeSet<String>();
 
-	private  SortedSet<String> activeParticipantIdSet = new TreeSet<String>();
+	private  TreeSet<String> activeParticipantIdSet = new TreeSet<String>();
 
 	private TreeMap<String, PlayerDataModel>  playersDataModels = new TreeMap<String, PlayerDataModel>();
 
@@ -655,7 +655,7 @@ public class Simulation implements Runnable
 
 	private synchronized void initialise(){
 
-		participantIdSet = (SortedSet<String>)players.keySet();
+		participantIdSet = new TreeSet<String>(players.keySet());
 
 		// Note Participant.initialise() and Participant.generateAuthcode() can only occur once!
 		System.out.println("Participants initialising");
@@ -757,21 +757,27 @@ public class Simulation implements Runnable
 			
 			System.out.println("***** Participants *****");
 			
-			Participant currentParticipant;
-			String participantId;
-			Iterator<String> iterator = activeParticipantIdSet.iterator();
+			
+			String currentId = activeParticipantIdSet.first();
+			TreeSet<String> done = new TreeSet<String>();
 
-			while (iterator.hasNext()) {
-				participantId = iterator.next();
-				currentParticipant = players.get(participantId );
-				try{
+			while (done.size() < activeParticipantIdSet.size()) {
+				Participant currentParticipant = players.get(currentId);
+				done.add(currentId);
+				try
+				{
 					currentParticipant.execute();
-				} catch (Exception e)
-				{System.err.println("Exception caused by " + participantId  + " in method execute() " + e );e.printStackTrace();}
+				}
+				catch (Exception e)
+				{
+					System.err.println("Exception caused by " + currentId  + " in method execute() " + e );
+					e.printStackTrace();
+				}
+				
+				currentId = activeParticipantIdSet.higher(currentId);
+				if (currentId == null) currentId = activeParticipantIdSet.first();
 			}
-
 		} catch (Exception e){
-
 			System.err.println("Participants execute Error: " + e);
 			e.printStackTrace();
 		}
