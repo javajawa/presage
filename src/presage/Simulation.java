@@ -757,7 +757,7 @@ public class Simulation implements Runnable
 			
 			System.out.println("***** Participants *****");
 			
-			
+			if (activeParticipantIdSet.isEmpty()) return;
 			String currentId = activeParticipantIdSet.first();
 			TreeSet<String> done = new TreeSet<String>();
 
