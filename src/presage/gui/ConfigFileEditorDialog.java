@@ -29,12 +29,14 @@ import javax.swing.SwingUtilities;
 
 
 import java.io.*;
+import java.util.logging.Logger;
 
 import presage.PresageConfig;
 
 
 public class ConfigFileEditorDialog extends JPanel
 {
+	private final static Logger logger = Logger.getLogger("presage.GUI");
 
 	private static final long serialVersionUID = 1L;
 

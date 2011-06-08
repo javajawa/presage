@@ -37,9 +37,12 @@ import presage.util.FileInfo;
 
 
 import java.awt.Component;
+import java.util.logging.Logger;
 
 public class AddPluginDialog extends JPanel implements TreeSelectionListener
 {
+	private final static Logger logger = Logger.getLogger("presage.GUI");
+
 	private static final long serialVersionUID = 1L;
 
 	Dimension dialogSize = new Dimension(600, 500);

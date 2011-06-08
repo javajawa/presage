@@ -42,9 +42,11 @@ import presage.ScriptedEvent;
 import presage.util.*;
 
 import java.awt.Component;
+import java.util.logging.Logger;
 
 public class AddPworldDialog extends JPanel implements TreeSelectionListener
 {
+	private final static Logger logger = Logger.getLogger("presage.GUI");
 
 	private static final long serialVersionUID = 1L;
 
