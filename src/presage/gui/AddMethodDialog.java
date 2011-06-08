@@ -51,24 +51,18 @@ import java.util.logging.Logger;
 public class AddMethodDialog extends JPanel implements TreeSelectionListener
 {
 	private final static Logger logger = Logger.getLogger("presage.GUI");
-
 	private static final long serialVersionUID = 1L;
-
 	Dimension dialogSize = new Dimension(600, 500);
 	JDialog dialog;
 	private boolean ok;
-
 	JTree m_InspectorJTree = new JTree();
 	JPanel m_ParameterPanel = new JPanel();
 	JButton m_AddButton = new JButton();
 	JButton m_CancelButton = new JButton();
 	JTextField m_jtextfield1 = new JTextField();
-
 	// For the dynamic parameter fields
 	JTextField[] parameterfields;
-
 	ScriptedEvent scriptedEvent;
-
 
 	/**
 	 * Default constructor
@@ -79,25 +73,30 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 	}
 
 	/** Required by TreeSelectionListener interface. */
-	public void valueChanged(TreeSelectionEvent e) {
+	public void valueChanged(TreeSelectionEvent e)
+	{
 
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode)m_InspectorJTree.getLastSelectedPathComponent();
 
 		if (node == null) return;
 
 		Object nodeInfo = node.getUserObject();
-		if (node.isLeaf() && nodeInfo.getClass().equals(ConstructorInfo.class)) {
+		if (node.isLeaf() && nodeInfo.getClass().equals(ConstructorInfo.class))
+		{
 			ConstructorInfo eventinfo = (ConstructorInfo)nodeInfo;
 
 			m_ParameterPanel.removeAll();
 
-			m_ParameterPanel.setLayout(new GridLayout(0,2));
+			m_ParameterPanel.setLayout(new GridLayout(0, 2));
 
 			parameterfields = new JTextField[eventinfo.parameterclasses.length];
 
-			for (int i = 0; i < eventinfo.parameterclasses.length; i++){
+			for (int i = 0; i < eventinfo.parameterclasses.length; i++)
+			{
 
-				JLabel label = new JLabel(eventinfo.parameterclasses[i].getSimpleName() + "  "+ eventinfo.parameternames[i] + " = ", JLabel.TRAILING);      	
+				JLabel label = new JLabel(
+								eventinfo.parameterclasses[i].getSimpleName() + "  " + eventinfo.parameternames[i] + " = ",
+								JLabel.TRAILING);
 				m_ParameterPanel.add(label);
 				JTextField field = new JTextField();
 				// field.setSize(new Dimension(90, 30));	
@@ -115,82 +114,138 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 
 
 
-		} else { // i.e. its a class not method
+		}
+		else
+		{ // i.e. its a class not method
 			m_ParameterPanel.removeAll();
-			m_ParameterPanel.add(new JLabel("Select a method"));    
+			m_ParameterPanel.add(new JLabel("Select a method"));
 			this.revalidate();
 			this.repaint();
 		}
 
 	}
 
-	private ScriptedEvent makeScriptedEvent(){
+	private ScriptedEvent makeScriptedEvent()
+	{
 
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode)m_InspectorJTree.getLastSelectedPathComponent();
 
 		// show an info box?
-		if (node == null){
-			JOptionPane.showMessageDialog(null, "You must select a Event Constructor, then input parameter values and execution time.", "Information", JOptionPane.INFORMATION_MESSAGE);
+		if (node == null)
+		{
+			JOptionPane.showMessageDialog(null,
+							"You must select a Event Constructor, then input parameter values and execution time.",
+							"Information", JOptionPane.INFORMATION_MESSAGE);
 			return null;
 		}
 
 		Object nodeInfo = node.getUserObject();
-		if (node.isLeaf()) {
-			if(nodeInfo.getClass().equals(ConstructorInfo.class)){
+		if (node.isLeaf())
+		{
+			if (nodeInfo.getClass().equals(ConstructorInfo.class))
+			{
 				ConstructorInfo eventInfo = (ConstructorInfo)nodeInfo;
 
-				Object[] parametervalues = new Object[eventInfo.parameterclasses.length]; 
+				Object[] parametervalues = new Object[eventInfo.parameterclasses.length];
 
-				for (int i = 0; i < parameterfields.length; i++){
+				for (int i = 0; i < parameterfields.length; i++)
+				{
 
 					Class<?> c = eventInfo.parameterclasses[i];
 
-					try {
-						if (c.equals(int.class)){
+					try
+					{
+						if (c.equals(int.class))
+						{
 							parametervalues[i] = Integer.parseInt(parameterfields[i].getText());
-						} else if (c.equals(double.class)){
-							parametervalues[i] = Double.parseDouble(parameterfields[i].getText());
-						} else if (c.equals(float.class)){
+						}
+						else if (c.equals(double.class))
+						{
+							parametervalues[i] = Double.parseDouble(
+											parameterfields[i].getText());
+						}
+						else if (c.equals(float.class))
+						{
 							parametervalues[i] = Float.parseFloat(parameterfields[i].getText());
-						} else if (c.equals(boolean.class)){
-							parametervalues[i] =Boolean.parseBoolean(parameterfields[i].getText());
-						} else if (c.equals(long.class)){
-							parametervalues[i] =Long.parseLong(parameterfields[i].getText());
-						} else {
-							try{
+						}
+						else if (c.equals(boolean.class))
+						{
+							parametervalues[i] = Boolean.parseBoolean(
+											parameterfields[i].getText());
+						}
+						else if (c.equals(long.class))
+						{
+							parametervalues[i] = Long.parseLong(parameterfields[i].getText());
+						}
+						else
+						{
+							try
+							{
 								Constructor<?> ct = c.getConstructor(String.class);
-								parametervalues[i] = ct.newInstance(new Object[]{parameterfields[i].getText()});
+								parametervalues[i] = ct.newInstance(new Object[]
+												{
+													parameterfields[i].getText()
+												});
 
-							} catch (Exception e){
-								logger.log(Level.SEVERE, "{0} must only contain parameter types int, double, float, boolean or those which have a constructor which accepts a String failed on parameter {1} class = {2}", new Object[]{eventInfo.classname,
-												eventInfo.parameternames[i], c.getName()});
-								JOptionPane.showMessageDialog(this, "Error creating parameter objects. Could not construct " + c.getSimpleName() + " "+ eventInfo.parameternames[i] + " with value = " + parameterfields[i].getText(), "Error", JOptionPane.ERROR_MESSAGE);
+							}
+							catch (Exception e)
+							{
+								logger.log(Level.SEVERE,
+												"{0} must only contain parameter types int, double, float, boolean or those which have a constructor which accepts a String failed on parameter {1} class = {2}",
+												new Object[]
+												{
+													eventInfo.classname,
+													eventInfo.parameternames[i], c.getName()
+												});
+								JOptionPane.showMessageDialog(this,
+												"Error creating parameter objects. Could not construct " + c.getSimpleName() + " " + eventInfo.parameternames[i] + " with value = " + parameterfields[i].getText(),
+												"Error", JOptionPane.ERROR_MESSAGE);
 								return null;
 							}
 						}
-					} catch (NumberFormatException e){
-						logger.log(Level.SEVERE, "{0} must only contain parameter types int, double, float, boolean or those which have a constructor which accepts a String failed on parameter {1} class = {2}", new Object[]{eventInfo.classname,
-										eventInfo.parameternames[i], c.getName()});
-						JOptionPane.showMessageDialog(this, "Error creating parameter objects. Could not construct " + c.getSimpleName() + " " + eventInfo.parameternames[i] + " with value = " + parameterfields[i].getText(), "Error", JOptionPane.ERROR_MESSAGE);
+					}
+					catch (NumberFormatException e)
+					{
+						logger.log(Level.SEVERE,
+										"{0} must only contain parameter types int, double, float, boolean or those which have a constructor which accepts a String failed on parameter {1} class = {2}",
+										new Object[]
+										{
+											eventInfo.classname,
+											eventInfo.parameternames[i], c.getName()
+										});
+						JOptionPane.showMessageDialog(this,
+										"Error creating parameter objects. Could not construct " + c.getSimpleName() + " " + eventInfo.parameternames[i] + " with value = " + parameterfields[i].getText(),
+										"Error", JOptionPane.ERROR_MESSAGE);
 						return null;
 					}
 				}
 
 				int execycle;
 
-				if (m_jtextfield1.getText().equalsIgnoreCase("")){
+				if (m_jtextfield1.getText().equalsIgnoreCase(""))
+				{
 					execycle = -1; // Simulation.cycle + 1;
-				} else {
-					try{
+				}
+				else
+				{
+					try
+					{
 						execycle = Integer.parseInt(m_jtextfield1.getText());
-					} catch (NumberFormatException e){
-						JOptionPane.showMessageDialog(this, "Execution time incorrectly specified.", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+					catch (NumberFormatException e)
+					{
+						JOptionPane.showMessageDialog(this,
+										"Execution time incorrectly specified.", "Error",
+										JOptionPane.ERROR_MESSAGE);
 						return null;
 					}
-				} 
+				}
 
-				if (execycle < 0){
-					JOptionPane.showMessageDialog(this, "Execution time incorrectly specified. Negative values not allowed.", "Error", JOptionPane.ERROR_MESSAGE);
+				if (execycle < 0)
+				{
+					JOptionPane.showMessageDialog(this,
+									"Execution time incorrectly specified. Negative values not allowed.",
+									"Error", JOptionPane.ERROR_MESSAGE);
 					return null;
 				}
 
@@ -202,74 +257,95 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 
 				Event event;
 
-				try{
+				try
+				{
 					Class<?> c = Class.forName(eventInfo.classname);
 					Constructor<?> ct = c.getConstructor(eventInfo.parameterclasses);
 					event = (Event)ct.newInstance(parametervalues);
 
 					//System.out.println(event.getLabel());
-					
-				} catch (Exception e){
-					logger.log(Level.SEVERE, eventInfo.classname + ": failed to construct event", e);
+
+				}
+				catch (Exception e)
+				{
+					logger.log(Level.SEVERE,
+									eventInfo.classname + ": failed to construct event", e);
 					return null;
 				}
 
-				 ScriptedEvent se = new ScriptedEvent(execycle, UUID.randomUUID().toString(), event);
+				ScriptedEvent se = new ScriptedEvent(execycle,
+								UUID.randomUUID().toString(), event);
 
 				//System.out.println(se.getLabel());
-				
+
 				return se;
 				// System.out.println(scriptElement.toString());
 
 				// return scriptedEvent;
 
-			} else {
-				JOptionPane.showMessageDialog(this, "Your selection is not a method.", "Information", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(this, "Your selection is not a method.",
+								"Information", JOptionPane.INFORMATION_MESSAGE);
 				return null;
 
 			}
-		} else {
-			JOptionPane.showMessageDialog(this, "Your selection is not a method.", "Information", JOptionPane.INFORMATION_MESSAGE);
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(this, "Your selection is not a method.",
+							"Information", JOptionPane.INFORMATION_MESSAGE);
 			return null;
 
 		}
 
 	}
 
-	public boolean checkAnnotation(Class<?> classObject, AnnotatedElement[] elts, DefaultMutableTreeNode top){
+	public boolean checkAnnotation(Class<?> classObject, AnnotatedElement[] elts,
+					DefaultMutableTreeNode top)
+	{
 		boolean result = false;
-		for(AnnotatedElement e : elts) { 
+		for (AnnotatedElement e : elts)
+		{
 			if (checkAnnotation(classObject, e, top))
 				result = true;
 		}
 		return result;
 	}
 
-	public boolean checkAnnotation(Class<?> classObject, AnnotatedElement e, DefaultMutableTreeNode top){
+	public boolean checkAnnotation(Class<?> classObject, AnnotatedElement e,
+					DefaultMutableTreeNode top)
+	{
 
-		if (e == null){
+		if (e == null)
+		{
 			// System.out.println("DEBUG null"); 
 			return false;
 		}
 
-		if (!e.isAnnotationPresent(presage.annotations.EventConstructor.class)) {
+		if (!e.isAnnotationPresent(presage.annotations.EventConstructor.class))
+		{
 			//	System.out.println("DEBUG no annotation");
 			return false;
 		}
 
 		// System.out.println("DEBUG found annotation");
 
-		presage.annotations.EventConstructor u = e.getAnnotation(presage.annotations.EventConstructor.class);
+		presage.annotations.EventConstructor u = e.getAnnotation(
+						presage.annotations.EventConstructor.class);
 
-		String[] parameternames = u.value();	    
+		String[] parameternames = u.value();
 
-		ConstructorInfo evinfo = new ConstructorInfo(classObject.getName(), classObject.getSimpleName(), ((Constructor)e).getParameterTypes(), parameternames);
+		ConstructorInfo evinfo = new ConstructorInfo(classObject.getName(),
+						classObject.getSimpleName(), ((Constructor)e).getParameterTypes(),
+						parameternames);
 
 		logger.log(Level.FINE, "params: {0}", Arrays.asList(parameternames));
 
 		DefaultMutableTreeNode eventnode = new DefaultMutableTreeNode(evinfo);
-		
-		top.add(eventnode);	
+
+		top.add(eventnode);
 
 		return true;
 
@@ -307,110 +383,135 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 //		}
 //		return false;
 //	}
-
-	public boolean handleFile(File file, DefaultMutableTreeNode top){
+	public boolean handleFile(File file, DefaultMutableTreeNode top)
+	{
 
 //		System.out.println("File Found: " + file.getName());
 //		DefaultMutableTreeNode filenode = new DefaultMutableTreeNode(new FileInfo(file.getName()));
 
 		String ext = StringParseTools.extensionForFilename(file.getName());
 
-		if (ext.equalsIgnoreCase("class")){
+		if (ext.equalsIgnoreCase("class"))
+		{
 
 			// add to list of class files!
 
 			String temp = file.getPath(); // + "/" +  presage.util.StringParseTools.readTokens(file.getName(), ".")[0];
 
-			temp = temp.replace("bin\\","");
-			temp = temp.replace('\\','.');
+			temp = temp.replace("bin\\", "");
+			temp = temp.replace('\\', '.');
 			temp = StringParseTools.filenameNoExtension(temp);
 
 			logger.log(Level.WARNING, "Class file found: " + temp);
 
-			try{
+			try
+			{
 				Class<?> c = Class.forName(temp);
 
 				// only add classes that contain events.
 				// DefaultMutableTreeNode classnode = new DefaultMutableTreeNode(new ClassInfo(c.getSimpleName()));
-				
+
 				// is it an event?
-				Class[] interfaces = c.getInterfaces();	
+				Class[] interfaces = c.getInterfaces();
 
-				if (interfaces.length == 0){
-					logger.log(Level.WARNING, "{0} : does not implement any interfaces", c.getName());
-				} else { 
+				if (interfaces.length == 0)
+				{
+					logger.log(Level.WARNING, "{0} : does not implement any interfaces",
+									c.getName());
+				}
+				else
+				{
 
-					for (int j = 0; j < interfaces.length; j++){
+					for (int j = 0; j < interfaces.length; j++)
+					{
 
-						try{
-							if (interfaces[j].equals(Class.forName("presage.Event")) ){
+						try
+						{
+							if (interfaces[j].equals(Class.forName("presage.Event")))
+							{
 
-								logger.log(Level.FINE, "{0} implements presage.Event", c.getName());
+								logger.log(Level.FINE, "{0} implements presage.Event",
+												c.getName());
 
-								if (checkAnnotation(c, c.getConstructors(), top)){
+								if (checkAnnotation(c, c.getConstructors(), top))
+								{
 									// top.add(classnode);
 									return true;
 								}
 
 							}
 
-						} catch (ClassNotFoundException e){
+						}
+						catch (ClassNotFoundException e)
+						{
 							logger.log(Level.SEVERE, null, e);
 						}
 					}
 				}
-			} catch (ClassNotFoundException e){
+			}
+			catch (ClassNotFoundException e)
+			{
 				logger.log(Level.SEVERE, null, e);
 			}
 		}
 		return false;
 	}
 
-
-	private boolean handleFolder(String path, DefaultMutableTreeNode top){
+	private boolean handleFolder(String path, DefaultMutableTreeNode top)
+	{
 
 		File toF = new File(path);
-		
+
 		boolean result = false;
-		DefaultMutableTreeNode filenode = new DefaultMutableTreeNode(new FileInfo(toF.getName()));
+		DefaultMutableTreeNode filenode = new DefaultMutableTreeNode(new FileInfo(
+						toF.getName()));
 
 
 		//get a list of everything in it
 		File[] files = toF.listFiles();
-		
+
 		logger.log(Level.INFO, "{0}", Arrays.asList(files));
 
-		try {
-			for (int i = 0; i < files.length; i++) {
+		try
+		{
+			for (int i = 0; i < files.length; i++)
+			{
 				// if its a file check if its a class file!
-				if (files[i].isFile()) {
+				if (files[i].isFile())
+				{
 					logger.log(Level.INFO, "File Found: {0}", files[i].getName());
-					if (handleFile(files[i], filenode)){	
+					if (handleFile(files[i], filenode))
+					{
 						top.add(filenode);
 						result = true;
 					}
 
-				} else if (files[i].isDirectory()) {
+				}
+				else if (files[i].isDirectory())
+				{
 					logger.log(Level.INFO, "Folder Found {0}", files[i].getName());
-					if (handleFolder(files[i].getPath(), filenode)){	
+					if (handleFolder(files[i].getPath(), filenode))
+					{
 						top.add(filenode);
 						result = true;
 					}
 				}
 
 			}
-		} catch (NullPointerException e) {
+		}
+		catch (NullPointerException e)
+		{
 			logger.log(Level.SEVERE, "MethodAddForm: ", e);
 		}
 
 		return result;
 	}
 
-	private void createNodes(DefaultMutableTreeNode top) {
-		String path = "bin/";	
+	private void createNodes(DefaultMutableTreeNode top)
+	{
+		String path = "bin/";
 		handleFolder(path, top);
 	}
-
 
 	/**
 	 * Adds fill components to empty cells in the first row and first column of the grid.
@@ -418,38 +519,38 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 	 * @param cols an array of column indices in the first row where fill components should be added.
 	 * @param rows an array of row indices in the first column where fill components should be added.
 	 */
-	void addFillComponents( Container panel, int[] cols, int[] rows )
+	void addFillComponents(Container panel, int[] cols, int[] rows)
 	{
-		Dimension filler = new Dimension(10,10);
+		Dimension filler = new Dimension(10, 10);
 
 		boolean filled_cell_11 = false;
 		CellConstraints cc = new CellConstraints();
-		if ( cols.length > 0 && rows.length > 0 )
+		if (cols.length > 0 && rows.length > 0)
 		{
-			if ( cols[0] == 1 && rows[0] == 1 )
+			if (cols[0] == 1 && rows[0] == 1)
 			{
 				/** add a rigid area  */
-				panel.add( Box.createRigidArea( filler ), cc.xy(1,1) );
+				panel.add(Box.createRigidArea(filler), cc.xy(1, 1));
 				filled_cell_11 = true;
 			}
 		}
 
-		for( int index = 0; index < cols.length; index++ )
+		for (int index = 0; index < cols.length; index++)
 		{
-			if ( cols[index] == 1 && filled_cell_11 )
+			if (cols[index] == 1 && filled_cell_11)
 			{
 				continue;
 			}
-			panel.add( Box.createRigidArea( filler ), cc.xy(cols[index],1) );
+			panel.add(Box.createRigidArea(filler), cc.xy(cols[index], 1));
 		}
 
-		for( int index = 0; index < rows.length; index++ )
+		for (int index = 0; index < rows.length; index++)
 		{
-			if ( rows[index] == 1 && filled_cell_11 )
+			if (rows[index] == 1 && filled_cell_11)
 			{
 				continue;
 			}
-			panel.add( Box.createRigidArea( filler ), cc.xy(1,rows[index]) );
+			panel.add(Box.createRigidArea(filler), cc.xy(1, rows[index]));
 		}
 
 	}
@@ -460,73 +561,80 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 	 * @return an ImageIcon instance with the specified image file
 	 * @throws IllegalArgumentException if the image resource cannot be loaded.
 	 */
-	public ImageIcon loadImage( String imageName )
+	public ImageIcon loadImage(String imageName)
 	{
 		try
 		{
 			ClassLoader classloader = getClass().getClassLoader();
-			java.net.URL url = classloader.getResource( imageName );
-			if ( url != null )
+			java.net.URL url = classloader.getResource(imageName);
+			if (url != null)
 			{
-				ImageIcon icon = new ImageIcon( url );
+				ImageIcon icon = new ImageIcon(url);
 				return icon;
 			}
 		}
-		catch( Exception e )
+		catch (Exception e)
 		{
 			logger.log(Level.SEVERE, null, e);
 		}
-		throw new IllegalArgumentException( "Unable to load image: " + imageName );
+		throw new IllegalArgumentException("Unable to load image: " + imageName);
 	}
 
-	public JPanel createbuttonpanel(){
-		
+	public JPanel createbuttonpanel()
+	{
+
 		JPanel jpanel1 = new JPanel();
-		
+
 		m_AddButton.setActionCommand("Add");
 		m_AddButton.setName("AddButton");
 		m_AddButton.setText("Add");
-		
+
 		jpanel1.add(m_AddButton); // ,cc.xy(3,16));
 
-		m_AddButton.addActionListener(new ActionListener() {
+		m_AddButton.addActionListener(new ActionListener()
+		{
 			@Override
-			public void actionPerformed(ActionEvent ae) {		
+			public void actionPerformed(ActionEvent ae)
+			{
 				// JButton s = (JButton) ae.getSource();
 
 				scriptedEvent = makeScriptedEvent();
-				
+
 				if (scriptedEvent == null)
 					return;
-					
+
 				// System.out.println(scriptedEvent.getLabel());
 
 				ok = true;
 				dialog.setVisible(false);
-			}	
+			}
 		});
 
 		m_CancelButton.setActionCommand("Cancel");
 		m_CancelButton.setName("CancelButton");
 		m_CancelButton.setText("Cancel");
 		jpanel1.add(m_CancelButton); // ,cc.xy(5,16));
-		m_CancelButton.addActionListener(new ActionListener() {
+		m_CancelButton.addActionListener(new ActionListener()
+		{
 			@Override
-			public void actionPerformed(ActionEvent ae) {				
-				ok = false;				
+			public void actionPerformed(ActionEvent ae)
+			{
+				ok = false;
 				scriptedEvent = null;
 				dialog.setVisible(false);
-			}	
+			}
 		});
-		
+
 		return jpanel1;
-		
+
 	}
-	
+
 	public JPanel createPanel()
 	{
 		JPanel jpanel1 = new JPanel();
-		FormLayout formlayout1 = new FormLayout("FILL:4DLU:NONE,FILL:DEFAULT:GROW(1.0),FILL:75PX:NONE,FILL:4DLU:NONE,FILL:75PX:NONE,FILL:75PX:GROW(1.0),FILL:4DLU:NONE","CENTER:2DLU:NONE,CENTER:DEFAULT:NONE,CENTER:2DLU:NONE,FILL:DEFAULT:GROW(1.0),FILL:DEFAULT:NONE,CENTER:DEFAULT:NONE,CENTER:DEFAULT:NONE,CENTER:2DLU:NONE,FILL:DEFAULT:NONE,CENTER:2DLU:NONE,CENTER:DEFAULT:NONE,CENTER:2DLU:NONE,CENTER:DEFAULT:NONE,CENTER:2DLU:NONE,CENTER:DEFAULT:NONE,CENTER:DEFAULT:NONE,CENTER:2DLU:NONE");
+		FormLayout formlayout1 = new FormLayout(
+						"FILL:4DLU:NONE,FILL:DEFAULT:GROW(1.0),FILL:75PX:NONE,FILL:4DLU:NONE,FILL:75PX:NONE,FILL:75PX:GROW(1.0),FILL:4DLU:NONE",
+						"CENTER:2DLU:NONE,CENTER:DEFAULT:NONE,CENTER:2DLU:NONE,FILL:DEFAULT:GROW(1.0),FILL:DEFAULT:NONE,CENTER:DEFAULT:NONE,CENTER:DEFAULT:NONE,CENTER:2DLU:NONE,FILL:DEFAULT:NONE,CENTER:2DLU:NONE,CENTER:DEFAULT:NONE,CENTER:2DLU:NONE,CENTER:DEFAULT:NONE,CENTER:2DLU:NONE,CENTER:DEFAULT:NONE,CENTER:DEFAULT:NONE,CENTER:2DLU:NONE");
 		CellConstraints cc = new CellConstraints();
 		jpanel1.setLayout(formlayout1);
 
@@ -542,44 +650,49 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 		m_InspectorJTree.setName("InspectorJTree");
 		JScrollPane jscrollpane1 = new JScrollPane();
 		jscrollpane1.setViewportView(m_InspectorJTree);
-		jscrollpane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		jscrollpane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		jpanel1.add(jscrollpane1,cc.xywh(2,4,5,3));
+		jscrollpane1.setVerticalScrollBarPolicy(
+						JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		jscrollpane1.setHorizontalScrollBarPolicy(
+						JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		jpanel1.add(jscrollpane1, cc.xywh(2, 4, 5, 3));
 
 		m_ParameterPanel.setName("ParameterPanel");
-		jpanel1.add(m_ParameterPanel,cc.xywh(2,9,5,1));
+		jpanel1.add(m_ParameterPanel, cc.xywh(2, 9, 5, 1));
 
 		TitledSeparator titledseparator1 = new TitledSeparator();
 		titledseparator1.setText("Step 1: Select Event from Tree:");
-		jpanel1.add(titledseparator1,cc.xywh(2,2,5,1));
+		jpanel1.add(titledseparator1, cc.xywh(2, 2, 5, 1));
 
 		TitledSeparator titledseparator2 = new TitledSeparator();
 		titledseparator2.setText("Step 2: Enter Constructor Parameters");
-		jpanel1.add(titledseparator2,cc.xywh(2,7,5,1));
+		jpanel1.add(titledseparator2, cc.xywh(2, 7, 5, 1));
 
 		TitledSeparator titledseparator3 = new TitledSeparator();
 		titledseparator3.setText("Step 3: Enter Event  Execution Time");
-		jpanel1.add(titledseparator3,cc.xywh(2,11,5,1));
+		jpanel1.add(titledseparator3, cc.xywh(2, 11, 5, 1));
 
-		
+
 
 		TitledSeparator titledseparator4 = new TitledSeparator();
 		titledseparator4.setText("Step 4: Click Add");
-		jpanel1.add(titledseparator4,cc.xywh(2,15,5,1));
+		jpanel1.add(titledseparator4, cc.xywh(2, 15, 5, 1));
 
 		JLabel jlabel1 = new JLabel();
 		jlabel1.setText("Simulation Cycle (Blank for next cycle):\n");
 		jlabel1.setHorizontalAlignment(JLabel.RIGHT);
-		jpanel1.add(jlabel1,cc.xywh(2,13,2,1));
+		jpanel1.add(jlabel1, cc.xywh(2, 13, 2, 1));
 
-		jpanel1.add(m_jtextfield1,cc.xywh(5,13,2,1));
+		jpanel1.add(m_jtextfield1, cc.xywh(5, 13, 2, 1));
 
-		addFillComponents(jpanel1,new int[]{ 1,2,3,4,5,6,7 },new int[]{ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 });
+		addFillComponents(jpanel1, new int[]
+						{
+							1, 2, 3, 4, 5, 6, 7
+						}, new int[]
+						{
+							1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17
+						});
 		return jpanel1;
 	}
-
-
-
 
 	/**
 	 * Initializer
@@ -591,27 +704,26 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 		add(createbuttonpanel(), BorderLayout.SOUTH);
 	}
 
-
 	/**
-   Show the chooser panel in a dialog
-   @param parent a component in the owner frame or null
-   @param title the dialog window title
+	Show the chooser panel in a dialog
+	@param parent a component in the owner frame or null
+	@param title the dialog window title
 	 */
 	public boolean showDialog(Component parent, String title)
-	{  
+	{
 		ok = false;
 
 		// locate the owner frame
 
 		Frame owner = null;
 		if (parent instanceof Frame)
-			owner = (Frame) parent;
-		else 
-			owner = (Frame) SwingUtilities.getAncestorOfClass(Frame.class, parent);
+			owner = (Frame)parent;
+		else
+			owner = (Frame)SwingUtilities.getAncestorOfClass(Frame.class, parent);
 
 		// if first time, or if owner has changed, make new dialog
-		if (dialog == null || dialog.getOwner() != owner) 
-		{      
+		if (dialog == null || dialog.getOwner() != owner)
+		{
 			logger.log(Level.INFO, owner.getClass().toString());
 
 			dialog = new JDialog(owner, true);
@@ -627,11 +739,11 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 		dialog.setTitle(title);
 		dialog.setSize(dialogSize);
 
-		dialog.setLocation( parent.getLocationOnScreen().x + (parent.getWidth() - dialog.getWidth())/2, parent.getLocationOnScreen().y + (parent.getHeight() - dialog.getHeight())/2)  ;  // (parent.getX() + parent.getWidth()
+		dialog.setLocation(
+						parent.getLocationOnScreen().x + (parent.getWidth() - dialog.getWidth()) / 2,
+						parent.getLocationOnScreen().y + (parent.getHeight() - dialog.getHeight()) / 2);  // (parent.getX() + parent.getWidth()
 
 		dialog.setVisible(true);
 		return ok;
 	}
-
-
 }
