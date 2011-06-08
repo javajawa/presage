@@ -11,7 +11,8 @@ import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.UUID;
 import java.util.Iterator;
-import presage.annotations.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import presage.environment.messages.ENVDeRegisterRequest;
 import presage.environment.messages.ENVRegisterRequest;
@@ -19,11 +20,15 @@ import presage.environment.messages.ENVRegistrationResponse;
 //import presage.util.MessageQueue;
 import presage.util.ActionQueue;
 import presage.util.RandomIterator;
-import presage.*;
 
 import org.simpleframework.xml.Element;
+import presage.Action;
+import presage.Environment;
+import presage.Input;
+import presage.Simulation;
 
 public abstract class AbstractEnvironment implements Environment {
+	private final static Logger logger = Logger.getLogger("presage.Simulation");
 
 	@Element
 	protected boolean queueactions = true;
@@ -70,9 +75,10 @@ public abstract class AbstractEnvironment implements Environment {
 		this.randomseed = randomseed;
 	}
 
+	@Override
 	public void initialise(Simulation sim){
 
-		System.out.println("Environment: -Initialising");
+		logger.log(Level.INFO, "Environment: -Initialising");
 		
 		random = new Random(randomseed);
 		// dataModel = new RealNetworkDataModel(this.getClass().getCanonicalName());
@@ -89,22 +95,22 @@ public abstract class AbstractEnvironment implements Environment {
 
 	public void execute(){
 
-//		System.out.println("***** AbstractEnvironment distributing Messages *****");
+//		logger.log(Level.INFO, "***** AbstractEnvironment distributing Messages *****");
 //		distributeMessages();
 
 
-		System.out.println("***** AbstractEnvironment executing Queued Actions *****");
+		logger.log(Level.FINE, "***** AbstractEnvironment executing Queued Actions *****");
 		executeQueuedActions();
 
 
-		System.out.println("***** AbstractEnvironment updating Physical World *****");
+		logger.log(Level.FINE, "***** AbstractEnvironment updating Physical World *****");
 		updatePhysicalWorld(); 
 
 
-		System.out.println("***** AbstractEnvironment updating Network *****");
+		logger.log(Level.FINE, "***** AbstractEnvironment updating Network *****");
 		updateNetwork();
 
-		System.out.println("***** AbstractEnvironment updating Participants Perceptions *****");
+		logger.log(Level.FINE, "***** AbstractEnvironment updating Participants Perceptions *****");
 		updatePerceptions();
 
 	}
@@ -135,26 +141,27 @@ public abstract class AbstractEnvironment implements Environment {
 		}
 	}
 
+	@Override
 	public Input act(Action action, String actorID, UUID authKey){
 
 		if (authenticator == null){
-			System.err.println("Warning: authenticator == null");
+			logger.log(Level.WARNING, "authenticator == null");
 			return null;
 		}
 
 		if (actorID == null){
-			System.err.println("Warning: actorID == null");
+			logger.log(Level.WARNING, "actorID == null");
 			return null;
 		}
 
 		if (authKey == null){
-			System.err.println("Warning: action.getParticipantAuthCode() == null");
+			logger.log(Level.WARNING, "action.getParticipantAuthCode() == null");
 			return null;
 		}
 
 
 		if (authenticator.get(actorID) == null){
-			System.err.println("Warning: authenticator.get(actorId()) == null");
+			logger.log(Level.WARNING, "authenticator.get(actorId()) == null");
 			return null;	
 		}
 
@@ -165,11 +172,11 @@ public abstract class AbstractEnvironment implements Environment {
 		// Also don't use the same key for everyone! 
 		
 		if (!(authenticator.get(actorID).equals(authKey))){		
-			System.err.println("Warning: AbstractEnvironment - Dropping action and returning null. authcode does not match registered authcode.");
+			logger.log(Level.WARNING, "Dropping action and returning null. authcode does not match registered authcode.");
 			return null;
 		}
 
-		// System.out.println("AbstractEnvironment act authenticated;");
+		// logger.log(Level.INFO, "AbstractEnvironment act authenticated;");
 
 		if (queueactions){
 			queueAction(action, actorID);
@@ -193,9 +200,8 @@ public abstract class AbstractEnvironment implements Environment {
 
 	protected Input executeAction(Action action, String actorID) {
 
-		if (actionhandlers.size() == 0){
-			System.err.println(this.getClass().getCanonicalName() 
-					+ " has no ActionHandlers cannot execute action request ");
+		if (actionhandlers.isEmpty()){
+			logger.log(Level.SEVERE, "{0} has no ActionHandlers cannot execute action request ", this.getClass().getCanonicalName());
 			return null;
 		}
 		
@@ -209,17 +215,15 @@ public abstract class AbstractEnvironment implements Environment {
 				canhandle.add(ah);
 		}
 
-		if (canhandle.size() == 0){
-			System.err.println(this.getClass().getCanonicalName() 
-					+ " has no ActionHandlers which can handle " + action.getClass().getCanonicalName() 
-					+ " - cannot execute action request ");
+		if (canhandle.isEmpty()){
+			logger.log(Level.SEVERE, "{0} has no ActionHandlers which can handle {1} - cannot execute action request ", new Object[]{this.getClass().getCanonicalName(),
+							action.getClass().getCanonicalName()});
 			return null;
 		}
 
 		if (canhandle.size() > 1)
-			System.out.println(this.getClass().getCanonicalName() 
-					+ ": WARNING - More than one ActionHandler.canhandle() returned true for " 
-					+ action.getClass().getCanonicalName() + " therefore I'm picking one at random." );
+			logger.log(Level.WARNING, "{0}: More than one ActionHandler.canhandle() returned true for {1} therefore I''m picking one at random.", new Object[]{this.getClass().getCanonicalName(),
+						action.getClass().getCanonicalName()});
 		
 
 		// now select an actionhandler from canhandle and have it handle the action.
@@ -236,13 +240,13 @@ public abstract class AbstractEnvironment implements Environment {
 //	return m.invoke(this, action);
 
 //	} catch (NoSuchMethodException e2) {
-//	System.err.println("execute physical action: NoSuchMethodException - " + e2);
+//	logger.log(Level.SEVERE, "execute physical action: NoSuchMethodException - " + e2);
 //	return null;
 //	} catch (IllegalAccessException e3) {
-//	System.err.println("execute physical action: IllegalAccessException - "+  e3);
+//	logger.log(Level.SEVERE, "execute physical action: IllegalAccessException - "+  e3);
 //	return null;
 //	} catch (InvocationTargetException e4) {
-//	System.err.println("execute physical action: InvocationTargetException - "+ e4);
+//	logger.log(Level.SEVERE, "execute physical action: InvocationTargetException - "+ e4);
 //	return null;
 //	}	
 //	}
@@ -309,10 +313,6 @@ public abstract class AbstractEnvironment implements Environment {
 
 	
 	public abstract ENVRegistrationResponse onRegister(ENVRegisterRequest registrationObject);
-
-	public abstract boolean deregister(ENVDeRegisterRequest deregistrationObject);
-
-	public abstract EnvDataModel getDataModel();
 
 	protected abstract void	onInitialise(Simulation sim);
 
