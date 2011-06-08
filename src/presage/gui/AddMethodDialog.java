@@ -45,9 +45,12 @@ import presage.ScriptedEvent;
 import presage.util.*;
 
 import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AddMethodDialog extends JPanel implements TreeSelectionListener
 {
+	private final static Logger logger = Logger.getLogger("presage.GUI");
 
 	private static final long serialVersionUID = 1L;
 
@@ -159,13 +162,15 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 								parametervalues[i] = ct.newInstance(new Object[]{parameterfields[i].getText()});
 
 							} catch (Exception e){
-								System.err.println(eventInfo.classname + " must only contain parameter types int, double, float, boolean or those which have a constructor which accepts a String failed on parameter " + eventInfo.parameternames[i] + " class = " + c.getName() );
+								logger.log(Level.SEVERE, "{0} must only contain parameter types int, double, float, boolean or those which have a constructor which accepts a String failed on parameter {1} class = {2}", new Object[]{eventInfo.classname,
+												eventInfo.parameternames[i], c.getName()});
 								JOptionPane.showMessageDialog(this, "Error creating parameter objects. Could not construct " + c.getSimpleName() + " "+ eventInfo.parameternames[i] + " with value = " + parameterfields[i].getText(), "Error", JOptionPane.ERROR_MESSAGE);
 								return null;
 							}
 						}
 					} catch (NumberFormatException e){
-						System.err.println(eventInfo.classname + " must only contain parameter types int, double, float, boolean or those which have a constructor which accepts a String failed on parameter " + eventInfo.parameternames[i] + " class = " + c.getName() );
+						logger.log(Level.SEVERE, "{0} must only contain parameter types int, double, float, boolean or those which have a constructor which accepts a String failed on parameter {1} class = {2}", new Object[]{eventInfo.classname,
+										eventInfo.parameternames[i], c.getName()});
 						JOptionPane.showMessageDialog(this, "Error creating parameter objects. Could not construct " + c.getSimpleName() + " " + eventInfo.parameternames[i] + " with value = " + parameterfields[i].getText(), "Error", JOptionPane.ERROR_MESSAGE);
 						return null;
 					}
@@ -205,7 +210,7 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 					//System.out.println(event.getLabel());
 					
 				} catch (Exception e){
-					System.err.println(eventInfo.classname + ": failed to construct event" + e);
+					logger.log(Level.SEVERE, eventInfo.classname + ": failed to construct event", e);
 					return null;
 				}
 
@@ -260,7 +265,7 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 
 		ConstructorInfo evinfo = new ConstructorInfo(classObject.getName(), classObject.getSimpleName(), ((Constructor)e).getParameterTypes(), parameternames);
 
-		System.out.println("params: " + Arrays.asList(parameternames));
+		logger.log(Level.FINE, "params: {0}", Arrays.asList(parameternames));
 
 		DefaultMutableTreeNode eventnode = new DefaultMutableTreeNode(evinfo);
 		
@@ -320,7 +325,7 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 			temp = temp.replace('\\','.');
 			temp = StringParseTools.filenameNoExtension(temp);
 
-			System.out.print("Class file found: " + temp);
+			logger.log(Level.WARNING, "Class file found: " + temp);
 
 			try{
 				Class<?> c = Class.forName(temp);
@@ -332,7 +337,7 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 				Class[] interfaces = c.getInterfaces();	
 
 				if (interfaces.length == 0){
-					System.out.println( " : does not implement any interfaces");
+					logger.log(Level.WARNING, "{0} : does not implement any interfaces", c.getName());
 				} else { 
 
 					for (int j = 0; j < interfaces.length; j++){
@@ -340,7 +345,7 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 						try{
 							if (interfaces[j].equals(Class.forName("presage.Event")) ){
 
-								System.out.println( c.getName() + " : implements presage.Event");
+								logger.log(Level.FINE, "{0} implements presage.Event", c.getName());
 
 								if (checkAnnotation(c, c.getConstructors(), top)){
 									// top.add(classnode);
@@ -350,12 +355,12 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 							}
 
 						} catch (ClassNotFoundException e){
-							System.err.println("" + e);
+							logger.log(Level.SEVERE, null, e);
 						}
 					}
 				}
 			} catch (ClassNotFoundException e){
-				System.err.println("" + e);
+				logger.log(Level.SEVERE, null, e);
 			}
 		}
 		return false;
@@ -373,20 +378,20 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 		//get a list of everything in it
 		File[] files = toF.listFiles();
 		
-		System.out.println(Arrays.asList(files));
+		logger.log(Level.INFO, "{0}", Arrays.asList(files));
 
 		try {
 			for (int i = 0; i < files.length; i++) {
 				// if its a file check if its a class file!
 				if (files[i].isFile()) {
-					System.out.println("File Found: " + files[i].getName());
+					logger.log(Level.INFO, "File Found: {0}", files[i].getName());
 					if (handleFile(files[i], filenode)){	
 						top.add(filenode);
 						result = true;
 					}
 
 				} else if (files[i].isDirectory()) {
-					System.out.println("Folder Found " + files[i].getName());
+					logger.log(Level.INFO, "Folder Found {0}", files[i].getName());
 					if (handleFolder(files[i].getPath(), filenode)){	
 						top.add(filenode);
 						result = true;
@@ -395,7 +400,7 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 
 			}
 		} catch (NullPointerException e) {
-			System.err.println("MethodAddForm: " + e);
+			logger.log(Level.SEVERE, "MethodAddForm: ", e);
 		}
 
 		return result;
@@ -469,7 +474,7 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 		}
 		catch( Exception e )
 		{
-			e.printStackTrace();
+			logger.log(Level.SEVERE, null, e);
 		}
 		throw new IllegalArgumentException( "Unable to load image: " + imageName );
 	}
@@ -485,6 +490,7 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 		jpanel1.add(m_AddButton); // ,cc.xy(3,16));
 
 		m_AddButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent ae) {		
 				// JButton s = (JButton) ae.getSource();
 
@@ -505,6 +511,7 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 		m_CancelButton.setText("Cancel");
 		jpanel1.add(m_CancelButton); // ,cc.xy(5,16));
 		m_CancelButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent ae) {				
 				ok = false;				
 				scriptedEvent = null;
@@ -605,7 +612,7 @@ public class AddMethodDialog extends JPanel implements TreeSelectionListener
 		// if first time, or if owner has changed, make new dialog
 		if (dialog == null || dialog.getOwner() != owner) 
 		{      
-			System.out.println(owner.getClass().toString());
+			logger.log(Level.INFO, owner.getClass().toString());
 
 			dialog = new JDialog(owner, true);
 			dialog.add(this);
