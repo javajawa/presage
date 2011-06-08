@@ -3,16 +3,16 @@ package presage;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.net.InetSocketAddress;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.UUID;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import presage.comm.CommModule;
-import presage.comm.ObjectProcessor;
 import presage.util.RandomIterator;
 import presage.util.ObjectCloner;
 
@@ -25,6 +25,8 @@ import presage.util.ObjectCloner;
  */
 public class Simulation implements Runnable
 {	
+	private final static Logger logger = Logger.getLogger("presage.Simulation");
+
 	// handles changes to the current "iteration", number of iterations "length",... 
 	private PropertyChangeSupport timeChangeSupport = new PropertyChangeSupport(this);
 
@@ -78,7 +80,7 @@ public class Simulation implements Runnable
 //		
 //	}
 	
-	Thread thread = new Thread(); 
+	private Thread thread = new Thread(); 
 	private volatile boolean threadSuspended = true;
 	private volatile boolean step = false;
 
@@ -89,14 +91,14 @@ public class Simulation implements Runnable
 	private int userwait = 50;
 
 	// for doing the estimated remaining time
-	LinkedList<Long> timing = new LinkedList<Long>();
+	private LinkedList<Long> timing = new LinkedList<Long>();
 
 	// the amount of time left
-	long timeLeft = 0;
+	private long timeLeft = 0;
 
 //	// This is akin to a preshared key; 
 //	// incoming messages should be checked against it to check if they are allowed to communicate.
-	UUID myAuthcode;
+	private UUID myAuthcode;
 
 	private PresageConfig presageConfig;
 
@@ -110,15 +112,15 @@ public class Simulation implements Runnable
 
 	// public static ParticipantThread participants;
 
-	public Environment environment;
+	public final Environment environment;
 
-	public  PluginManager pluginmanager;
+	public final PluginManager pluginmanager;
 
-	public  EventScriptManager eventscriptmanager;
+	public final EventScriptManager eventscriptmanager;
 
 	private boolean initialised = false;
 
-	public  TreeMap<String,Participant> players = new TreeMap<String, Participant>();
+	public final TreeMap<String,Participant> players;// = new TreeMap<String, Participant>();
 
 	private  TreeSet<String> participantIdSet = new TreeSet<String>();
 
@@ -156,8 +158,15 @@ public class Simulation implements Runnable
 //	// List of participant ids at each node.
 //	public static TreeMap<String, ArrayList<String>> cnodeParticipants =  new TreeMap<String, ArrayList<String>>();
 
-	public  Simulation(){}
+	private Simulation()
+	{
+		this.players = new TreeMap<String, Participant>();
+		this.environment = null;
+		this.pluginmanager = null;
+		this.eventscriptmanager = null;
+	}
 	
+	@SuppressWarnings("LeakingThisInConstructor")
 	public Simulation(PresageConfig presageConfig, TreeMap<String,Participant> players, 
 			Environment environment, PluginManager pluginmanager, EventScriptManager eventscriptmanager){
 
@@ -167,22 +176,13 @@ public class Simulation implements Runnable
 //			Environment environment, PluginManager pluginmanager, EventScriptManager eventscriptmanager){
 
 //		if (parent == null)
-//			System.out.println("Configuration failure parent == null");
+//			logger.log(Level.INFO , "Configuration failure parent == null");
 
-		if (players == null)
-			System.out.println("Configuration failure players == null");
-
-		if (pluginmanager == null)
-			System.out.println("Configuration failure pluginmanager == null");
-
-		if (eventscriptmanager == null)
-			System.out.println("Configuration failure eventscriptmanager == null");
-
-		if (environment == null)
-			System.out.println("Configuration failure environment == null");
-
-		if (presageConfig == null)
-			System.out.println("Configuration failure presageConfig == null");
+		if (players == null) logger.log(Level.WARNING , "Configuration failure players == null");
+		if (pluginmanager == null) logger.log(Level.WARNING , "Configuration failure pluginmanager == null");
+		if (eventscriptmanager == null)	logger.log(Level.WARNING , "Configuration failure eventscriptmanager == null");
+		if (environment == null) logger.log(Level.WARNING , "Configuration failure environment == null");
+		if (presageConfig == null) logger.log(Level.WARNING , "Configuration failure presageConfig == null");
 
 		this.presageConfig = presageConfig;
 
@@ -204,11 +204,11 @@ public class Simulation implements Runnable
 //		InetAddress tmp = InetAddress.getLocalHost();
 //		serverAddress = new InetSocketAddress(tmp.getHostName(), presageConfig.getPresagePort());
 //		} catch (Exception e) {
-//		System.err.println("" + e);
+//		logger.log(Level.SEVERE, "" , e);
 //		}
 
 //		comm = new CommModule(serverAddress.getPort(), new SimulationCommProcessor());
-//		System.out.println("	Starting External Comm Server");
+//		logger.log(Level.INFO , "	Starting External Comm Server");
 //		comm.start();
 
 
@@ -228,7 +228,7 @@ public class Simulation implements Runnable
 
 //		// contact each one with a request
 //		if (!cnode.initialise(this)){
-//		System.err.println("Initialisation of ComputeNode (" + cnode.getName() + ") Failed");
+//		logger.log(Level.SEVERE, "Initialisation of ComputeNode (" + cnode.getName() + ") Failed");
 //		System.exit(0);
 //		}
 //		}
@@ -275,21 +275,19 @@ public class Simulation implements Runnable
 			// parent.updateProgressInfo(cycle + 1, presageConfig.getIterations(), getEta()); 
 		} catch (Exception e){
 
-			System.err.println("	timeChangeSupport.firePropertyChange(\"time\", cycle -1, cycle); Error: " + e);
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "	timeChangeSupport.firePropertyChange(\"time\", cycle -1, cycle); Error: ", e);
 		}
 		
 	}
 	
 	private void doEventScript(){
 		try {
-			System.out.println("***** EventScriptManager *****");
+			logger.log(Level.FINE , "***** EventScriptManager *****");
 			eventscriptmanager.executeEvents(this, cycle);
 
 		} catch (Exception e){
 
-			System.err.println("eventscriptmanager.executeEvents Error: " + e);
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "eventscriptmanager.executeEvents Error: " , e);
 		}
 	}
 	
@@ -298,25 +296,25 @@ public class Simulation implements Runnable
 		try {
 			environment.execute();	
 		} catch (Exception e){
-			System.err.println("environment.execute Error: " + e);
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "environment.execute Error: " , e);
 		}
 	}
 	
 	private void doPlugins(){
 		
 		try {
-			System.out.println("***** PluginManager *****");
+			logger.log(Level.FINE , "***** PluginManager *****");
 
 			pluginmanager.executePlugins();
 			
 		} catch (Exception e){
 
-			System.err.println("pluginmanager.executePlugins Error: " + e);
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "pluginmanager.executePlugins Error: " , e);
 		}
 	}
 	
+	@SuppressWarnings("SleepWhileInLoop")
+	@Override
 	public void run() {
 
 		eventscriptmanager.executePreEvents(this);
@@ -328,7 +326,7 @@ public class Simulation implements Runnable
 				if (threadSuspended)
 					suspendedwait();
 
-				System.out.println("Cycle = " + cycle + " -------------------------------------------");
+				logger.log(Level.INFO, "Cycle = {0} -------------------------------------------", cycle);
 
 				fireTimeChangeEvent();
 
@@ -356,47 +354,46 @@ public class Simulation implements Runnable
 
 			} catch (Exception e){
 
-				System.err.println("Simulation Thread Error: " + e);
-				e.printStackTrace();
+				logger.log(Level.SEVERE, "Simulation Thread Error: " , e);
 			}
 
 		}
 		
 //		// Get datamodels and Execute plugins again to get the final state
-//		System.out.println("Getting dmodels for t = "+ cycle);
+//		logger.log(Level.INFO , "Getting dmodels for t = "+ cycle);
 //		
 //		try {
 //			setEnvDataModel(environment.getDataModel());
 //		} catch (Exception e){
 //
-//			System.err.println("environment.getDataModel() Error: " + e);
+//			logger.log(Level.SEVERE, "environment.getDataModel() Error: " , e);
 //			e.printStackTrace();
 //		}
 //
 //		try {
-//			System.out.println("***** Participants getting participant datamodels *****");
+//			logger.log(Level.INFO , "***** Participants getting participant datamodels *****");
 //			getDataModels();
 //
 //
 //		} catch (Exception e){
 //
-//			System.err.println("Participants updateDataModels() Error: " + e);
+//			logger.log(Level.SEVERE, "Participants updateDataModels() Error: " , e);
 //			e.printStackTrace();
 //		}
 //		
 //		try {
-//			System.out.println("***** PluginManager *****");
+//			logger.log(Level.INFO , "***** PluginManager *****");
 //
 //			pluginmanager.executePlugins();
 //
 //
 //		} catch (Exception e){
 //
-//			System.err.println("pluginmanager.executePlugins Error: " + e);
+//			logger.log(Level.SEVERE, "pluginmanager.executePlugins Error: " , e);
 //			e.printStackTrace();
 //		}
 
-		System.out.println("Simulation Thread Completed");
+		logger.log(Level.INFO , "Simulation Thread Completed");
 
 		eventscriptmanager.executePostEvents(this);
 
@@ -404,11 +401,12 @@ public class Simulation implements Runnable
 
 		onSimulationComplete();
 		
-		System.out.println("Done");
+		logger.log(Level.INFO , "Done");
 
 	}
 
 	// Thread Controls
+	@SuppressWarnings({"SleepWhileInLoop", "SleepWhileHoldingLock"})
 	private void suspendedwait() throws InterruptedException{
 		synchronized(this) {
 			while (threadSuspended && !step)	{
@@ -421,24 +419,24 @@ public class Simulation implements Runnable
 
 	public void pause(){
 
-		System.out.println("Suspending the sim thread");
+		logger.log(Level.INFO , "Suspending the sim thread");
 		threadSuspended = true;
 	}
 
 	public void play(){
-		System.out.println("Resuming the sim thread");
+		logger.log(Level.INFO , "Resuming the sim thread");
 		threadSuspended = false;
 	}
 
 	public void step(){
-		System.out.println("Steping the sim thread");
+		logger.log(Level.INFO , "Steping the sim thread");
 		step = true;
 		threadSuspended = true;
 	}
 
 	public void end(){
 
-		System.out.println("End Simulation Called ");
+		logger.log(Level.INFO , "End Simulation Called ");
 		// set the length of the experiment to the current time and the experiement will end.
 		// will fire a property change event.
 		setExperimentLength(cycle);
@@ -468,7 +466,7 @@ public class Simulation implements Runnable
 //	synchronized(this) {
 //	completedthreads++;
 
-//	System.out.println(completedthreads + ") threadcompleted(" + cnodename + ") in  " +  executiontime);
+//	logger.log(Level.INFO , completedthreads + ") threadcompleted(" + cnodename + ") in  " +  executiontime);
 
 //	cnodeTimings.put(cnodename, executiontime);
 
@@ -492,7 +490,8 @@ public class Simulation implements Runnable
 
 		long timeleft = (presageConfig.getIterations() - cycle)*timepercycle;
 
-		System.out.println(cycle + "/" + presageConfig.getIterations() + ": t-minus " + timeleft + " (ms)");
+		logger.log(Level.INFO, "{0}/{1}: t-minus {2} (ms)", new Object[]{cycle,
+						presageConfig.getIterations(), timeleft});
 
 		return timeleft;
 
@@ -522,7 +521,7 @@ public class Simulation implements Runnable
 		try {
 			return (EnvDataModel)ObjectCloner.deepCopy(envDataModel);	
 		} catch (Exception e) {
-			System.err.println("Exception in Simulaion.getEnvDataModel() - check your EnvironmentDataModel is serializable" + e);
+			logger.log(Level.SEVERE, "Exception in Simulaion.getEnvDataModel() - check your EnvironmentDataModel is serializable" , e);
 			return null;
 		}
 		}
@@ -535,7 +534,7 @@ public class Simulation implements Runnable
 		try {
 			return (TreeMap<String, PlayerDataModel>)ObjectCloner.deepCopy(playersDataModels);	
 		} catch (Exception e) {
-			System.err.println("Exception in Simulaion.getPlayerDataModels() - check your AbstractParticipantDataModel class is serializable" + e);
+			logger.log(Level.SEVERE, "Exception in Simulaion.getPlayerDataModels() - check your AbstractParticipantDataModel class is serializable" , e);
 			return null;
 		}
 		}
@@ -547,7 +546,7 @@ public class Simulation implements Runnable
 		try {
 			return (PlayerDataModel)ObjectCloner.deepCopy(playersDataModels.get(participantId));	
 		} catch (Exception e) {
-			System.err.println("Exception in Simulaion.getPlayerDataModel() - check your AbstractParticipantDataModel class is serializable" + e);
+			logger.log(Level.SEVERE, "Exception in Simulaion.getPlayerDataModel() - check your AbstractParticipantDataModel class is serializable" , e);
 			return null;
 		}
 		}
@@ -620,7 +619,7 @@ public class Simulation implements Runnable
 
 
 	public SortedSet<String> getParticipantIdSet() {
-		return participantIdSet;
+		return Collections.unmodifiableSortedSet(participantIdSet);
 	}
 
 	public int getNumberParticipants() {
@@ -658,9 +657,9 @@ public class Simulation implements Runnable
 		participantIdSet = new TreeSet<String>(players.keySet());
 
 		// Note Participant.initialise() and Participant.generateAuthcode() can only occur once!
-		System.out.println("Participants initialising");
+		logger.log(Level.INFO , "Participants initialising");
 
-		// System.out.println(Arrays.asList(players.keySet()));
+		// logger.log(Level.INFO , Arrays.asList(players.keySet()));
 
 		Participant currentParticipant;
 		Iterator<String> iterator = players.keySet().iterator();
@@ -687,13 +686,9 @@ public class Simulation implements Runnable
 	public synchronized void activateParticipant(String name){
 
 		if (!players.keySet().contains(name)) {
-			System.err
-			.println("SIMULATOR: WARNING - Cannot Activate Participant, "
-					+ name + " not a player");
+			logger.log(Level.WARNING, "Cannot Activate Participant, {0} not a player", name);
 		} else if (activeParticipantIdSet.contains(name)) {
-			System.err
-			.println("SIMULATOR: WARNING - Cannot Activate Participant, "
-					+ name + " is already active.");
+			logger.log(Level.WARNING, "Cannot Activate Participant, {0} is already active.", name);
 		} else {
 			activeParticipantIdSet.add(name);
 			Participant currentParticipant;
@@ -705,13 +700,9 @@ public class Simulation implements Runnable
 	public synchronized void deActivateParticipant(String name){
 
 		if (!players.keySet().contains(name)) {
-			System.err
-			.println("SIMULATOR: WARNING - Cannot Deactivate Participant, "
-					+ name + " not a player");
+			logger.log(Level.WARNING, "Cannot Deactivate Participant, {0} not a player", name);
 		} else if (!activeParticipantIdSet.contains(name)) {
-			System.err
-			.println("SIMULATOR: WARNING - Cannot Deactivate Participant, "
-					+ name + " is already inactive.");
+			logger.log(Level.WARNING, "Cannot Deactivate Participant, {0} is already inactive.", name);
 		} else {
 			activeParticipantIdSet.remove(name);
 			Participant currentParticipant;
@@ -726,7 +717,7 @@ public class Simulation implements Runnable
 
 		try {
 				
-				System.out.println("***** Participants *****");
+				logger.log(Level.FINE , "***** Participants *****");
 				
 				Participant currentParticipant;
 				String participantId;
@@ -739,13 +730,14 @@ public class Simulation implements Runnable
 						currentParticipant.setTime(cycle);
 						playersDataModels.put(participantId, currentParticipant.getInternalDataModel());
 					} catch (Exception e)
-					{System.err.println("Exception caused by " + participantId  + " in method execute() " + e );e.printStackTrace();}
+					{
+						logger.log(Level.SEVERE, "Exception caused by " + participantId  + " in method execute() ", e);
+					}
 				}
 
 			} catch (Exception e){
 
-				System.err.println("Participants execute Error: " + e);
-				e.printStackTrace();
+				logger.log(Level.SEVERE, "Participants execute Error: " , e);
 			}
 		}
 	
@@ -755,7 +747,7 @@ public class Simulation implements Runnable
 
 	try {
 			
-			System.out.println("***** Participants *****");
+			logger.log(Level.FINE , "***** Participants *****");
 			
 			if (activeParticipantIdSet.isEmpty()) return;
 			String currentId = activeParticipantIdSet.first();
@@ -770,16 +762,14 @@ public class Simulation implements Runnable
 				}
 				catch (Exception e)
 				{
-					System.err.println("Exception caused by " + currentId  + " in method execute() " + e );
-					e.printStackTrace();
+					logger.log(Level.SEVERE, "Exception caused by " + currentId  + " in method execute() ", e );
 				}
 				
 				currentId = activeParticipantIdSet.higher(currentId);
 				if (currentId == null) currentId = activeParticipantIdSet.first();
 			}
 		} catch (Exception e){
-			System.err.println("Participants execute Error: " + e);
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Participants execute Error: " , e);
 		}
 	}
 
@@ -794,7 +784,7 @@ public class Simulation implements Runnable
 //			participantId =(String) iterator.next();
 //			currentParticipant = (Participant) players.get(participantId);
 //			
-//			} catch (Exception e){System.err.println("Exception caused by " + participantId  + " when getting datamodel " + e);}
+//			} catch (Exception e){logger.log(Level.SEVERE, "Exception caused by " + participantId  + " when getting datamodel " , e);}
 //		}
 //	}
 	
@@ -811,7 +801,7 @@ public class Simulation implements Runnable
 		while (iterator.hasNext()) {
 			participantId = iterator.next();
 			currentParticipant = players.get(participantId);
-			try{currentParticipant.onSimulationComplete();} catch (Exception e){System.err.println("Exception caused by " + participantId  + " in method execute() " + e);}
+			try{currentParticipant.onSimulationComplete();} catch (Exception e){logger.log(Level.SEVERE, "Exception caused by " + participantId  + " in method execute() " , e);}
 		}
 
 
@@ -826,7 +816,7 @@ public class Simulation implements Runnable
 
 
 //	if (!result){
-//	System.err.println("migrate(" + participantId + ", " + toCnodeServerName + ") Failed");
+//	logger.log(Level.SEVERE, "migrate(" + participantId + ", " + toCnodeServerName + ") Failed");
 //	return;
 //	}
 
@@ -845,7 +835,7 @@ public class Simulation implements Runnable
 //	MobileParticipant participant = participantThreads.get(cnodeName).retriveParticipant(participantId);
 
 //	if (participant == null) {
-//	System.err.println("Received null from retriveParticipant(" + participantId + "):");
+//	logger.log(Level.SEVERE, "Received null from retriveParticipant(" + participantId + "):");
 //	}
 
 //	onMigratedParticipant(participantId, cnodeName, mycnodeId);
@@ -865,7 +855,7 @@ public class Simulation implements Runnable
 //	ParticipantConnector pc = participantThreads.get(cnodename).sendParticipant(participant, activeParticipantIdSet.contains(participant.getId()));
 
 //	if (pc == null){
-//	System.err.println("cnodeSendParticipant recieved null Participant connector");
+//	logger.log(Level.SEVERE, "cnodeSendParticipant recieved null Participant connector");
 //	participant.afterMigrate(envcon);
 //	} else {
 //	onMigratedParticipant(participant.getId(), mycnodeId, cnodename);
@@ -893,7 +883,7 @@ public class Simulation implements Runnable
 //	public class SimulationCommProcessor implements ObjectProcessor {
 
 //	public Object processObject(Object request) {
-//	System.out.println("Request Received: " + request.getClass().getCanonicalName().toString());
+//	logger.log(Level.INFO , "Request Received: " + request.getClass().getCanonicalName().toString());
 
 //	return null;
 //	}
