@@ -106,12 +106,12 @@ public class PresageConfig {
 //	public void setAuthcode(UUID authcode){this.authcode = authcode; this.authcodestring = authcode.toString();}
 //	public void setCnodeDirectoryPath(String cnodedirectorypath){this.cnodedirectorypath =  cnodedirectorypath;}
 
-	boolean getAutostop()
+	public boolean getAutostop()
 	{
 		return autoStop;
 	}
 
-	void setAutostop(boolean newValue)
+	public void setAutostop(boolean newValue)
 	{
 		autoStop = newValue;
 	}
