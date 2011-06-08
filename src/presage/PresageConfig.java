@@ -54,6 +54,7 @@ public class PresageConfig {
 	
 	@Element
 	private String environmentconfigpath;
+	private boolean autoStop;
 	
 //	@Element
 //	private String cnodedirectorypath; // What if its not simulationdistributed? empty? doesn't exisit?
@@ -104,4 +105,14 @@ public class PresageConfig {
 	public void setEnvironmentConfigPath(String environmentconfigpath){this.environmentconfigpath =  environmentconfigpath;}
 //	public void setAuthcode(UUID authcode){this.authcode = authcode; this.authcodestring = authcode.toString();}
 //	public void setCnodeDirectoryPath(String cnodedirectorypath){this.cnodedirectorypath =  cnodedirectorypath;}
+
+	boolean getAutostop()
+	{
+		return autoStop;
+	}
+
+	void setAutostop(boolean newValue)
+	{
+		autoStop = newValue;
+	}
 }

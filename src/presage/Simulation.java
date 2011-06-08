@@ -357,6 +357,12 @@ public class Simulation implements Runnable
 				Thread.sleep(presageConfig.getThreadDelay());
 
 				incTime();
+				
+				if (this.presageConfig.getAutostop())
+				{
+					this.cycle = this.presageConfig.getIterations();
+					break;
+				}
 
 			}
 			catch (Exception e)
