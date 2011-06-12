@@ -361,11 +361,11 @@ public class ControlCenter extends JFrame  {
 			public void windowClosing( WindowEvent evt )
 			{
 
-				int button = JOptionPane.showConfirmDialog((ControlCenter)evt.getSource(), "Are you sure you want to exit?", "Confirm exit", JOptionPane.YES_NO_OPTION);
-				if(button == JOptionPane.YES_OPTION)
-				{
+				//int button = JOptionPane.showConfirmDialog((ControlCenter)evt.getSource(), "Are you sure you want to exit?", "Confirm exit", JOptionPane.YES_NO_OPTION);
+				//if(button == JOptionPane.YES_OPTION)
+				//{
 					System.exit(0);
-				}        
+				//}        
 			}
 		});
 
