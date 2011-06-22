@@ -11,6 +11,7 @@ public class PresageConfig {
 	public static final long 	DEFAULT_RANDOMSEED = System.currentTimeMillis();	
 	public static final int 	DEFAULT_THREADDELAY = 1;
 	public static final boolean DEFAULT_AUTORUN = true;
+	public static final boolean DEFAULT_ASYNC = true;
 //	public static final int 	DEFAULT_PRESAGEPORT = 9361;
 //	public static final boolean DEFAULT_DISTRIBUTE = false;
 	
@@ -36,7 +37,10 @@ public class PresageConfig {
 
 	@Element
 	private boolean autorun;
-	
+
+	@Element
+	private boolean async;
+
 //	@Element
 //	private int presageport;
 	
@@ -66,6 +70,7 @@ public class PresageConfig {
 		this.randomseed = DEFAULT_RANDOMSEED;	
 		this.threaddelay = DEFAULT_THREADDELAY;
 		this.autorun = DEFAULT_AUTORUN;
+		this.async = DEFAULT_ASYNC;
 //		this.presageport = DEFAULT_PRESAGEPORT;
 	}
 
@@ -74,6 +79,7 @@ public class PresageConfig {
 	public long getIterations(){return iterations;}
 	public long getRandomSeed(){return randomseed;}
 	public boolean getAutorun(){return autorun;}
+	public boolean getAsync(){return async;}
 //	public int getPresagePort(){return presageport;}
 	public int getThreadDelay(){return threaddelay;}
 	public Class<? extends Environment> getEnvironmentClass(){return environmentclass;}	
@@ -96,6 +102,7 @@ public class PresageConfig {
 	public void setIterations(long iterations){this.iterations = iterations;}
 	public void setRandomSeed(long randomseed){this.randomseed = randomseed;}
 	public void setAutorun(boolean autorun){this.autorun = autorun;}
+	public void setAsync(boolean async){this.async = async;}
 //	public void setPresagePort(int presageport){this.presageport = presageport;}
 	public void setThreadDelay(int threaddelay){this.threaddelay = threaddelay;}
 	public void setEnvironmentClass(Class<? extends Environment> environmentclass){this.environmentclass = environmentclass;}
