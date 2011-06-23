@@ -108,7 +108,6 @@ public class PluginManager {
 	}
 
 	public synchronized void removePlugin(Plugin plugin, UUID uuid){
-		System.out.println("Plugin Manager removing plugin: " );
 		
 		// Plugin plugin = plugins.get(uuid);
 		
@@ -121,8 +120,6 @@ public class PluginManager {
 	}
 
 	public synchronized void addPlugin(Plugin plugin){
-		
-		System.out.println("Adding Plugin " + plugin.getLabel());
 
 		// UUID uuidvalue = UUID.randomUUID();
 		

@@ -53,7 +53,7 @@ public class Presage {
 
 		Presage ps = new Presage(args[0]);
 			
-		System.out.println("back in main");
+		//System.out.println("back in main");
 		
 	}
 }

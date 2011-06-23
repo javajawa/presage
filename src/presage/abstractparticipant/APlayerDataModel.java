@@ -106,7 +106,7 @@ public abstract class APlayerDataModel implements PlayerDataModel, java.io.Seria
 		// e.g. myRolesE = producer><consumer><bank><auctionhouse
 		roles = StringParseTools.stringToArrayList(myrolesString);
 
-		System.out.println(myId + ": my rolesString = " + myrolesString);
+		//System.out.println(myId + ": my rolesString = " + myrolesString);
 
 		random = new Random(randomseed);
 
