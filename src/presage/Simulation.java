@@ -415,6 +415,10 @@ public class Simulation implements Runnable
 
 		onSimulationComplete();
 
+		synchronized(this)
+		{
+			notifyAll();
+		}
 		logger.log(Level.INFO, "Done");
 
 	}

@@ -24,7 +24,7 @@ import presage.configure.ConfigurationLoader;
  */
 public class Presage {
 
-	public Presage(String path){
+	public Presage(String path) throws InterruptedException{
 
 		PresageConfig presageConfig = ConfigurationLoader.loadPresageConfig(new File(path));
 		
@@ -37,15 +37,20 @@ public class Presage {
 		EventScriptManager esm = 	ConfigurationLoader.loadEventScriptManager(new File(presageConfig.getEventscriptConfigPath()));
 
 		// As there is no GUI force it to run straight away.
-		presageConfig.setAutorun(true);
+		presageConfig.setAutorun(false);
 
-		Simulation sim = new Simulation(presageConfig, players, environment, pluginmanager, esm);		
+		final Simulation sim = new Simulation(presageConfig, players, environment, pluginmanager, esm);
+		synchronized(sim)
+		{
+			sim.play();
+			sim.wait(); 
+		}
 	}
 	
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		// TODO 
 		
