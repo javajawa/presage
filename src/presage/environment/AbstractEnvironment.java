@@ -23,6 +23,7 @@ import org.simpleframework.xml.Element;
 import presage.Action;
 import presage.Environment;
 import presage.Input;
+import presage.Participant;
 import presage.Simulation;
 
 public abstract class AbstractEnvironment implements Environment
@@ -44,7 +45,7 @@ public abstract class AbstractEnvironment implements Environment
 	protected TreeMap<String, ArrayList<Input>> participantInputs = new TreeMap<String, ArrayList<Input>>();
 	protected ArrayList<ActionHandler> actionhandlers = new ArrayList<ActionHandler>();
 	// A list of the messages by conversation type you want to count.
-	// private String[] msgTypes = {"hellowalker", "hello", "subscription", "purchase", "freebie", "recFwd", "other"}; 
+	// private String[] msgTypes = {"hellowalker", "hello", "subscription", "purchase", "freebie", "recFwd", "other"};
 	protected AEnvDataModel dmodel;
 
 	@Deprecated
@@ -164,11 +165,11 @@ public abstract class AbstractEnvironment implements Environment
 			return null;
 		}
 
-		// WARNING this does not stop a peer spoofing the from field in a message to another peer. 
-		// Merely authenticates with the environment not the final destination. i.e. so another agent can't send a move request on behalf of another. 
+		// WARNING this does not stop a peer spoofing the from field in a message to another peer.
+		// Merely authenticates with the environment not the final destination. i.e. so another agent can't send a move request on behalf of another.
 		// For peers to authenticate message senders a further check should be performed.
 
-		// Also don't use the same key for everyone! 
+		// Also don't use the same key for everyone!
 
 		if (!(authenticator.get(actorID).equals(authKey)))
 		{
@@ -267,7 +268,7 @@ public abstract class AbstractEnvironment implements Environment
 //	} catch (InvocationTargetException e4) {
 //	logger.log(Level.SEVERE, "execute physical action: InvocationTargetException - "+ e4);
 //	return null;
-//	}	
+//	}
 //	}
 //	public void sendMessage(Message message){
 //	if (queuemessages){
@@ -278,7 +279,7 @@ public abstract class AbstractEnvironment implements Environment
 //	deliverMessage(message);
 //	}
 //	protected void queueMessage(Message message){
-//	// we don't authenticate messages as you will 
+//	// we don't authenticate messages as you will
 //	// possibly want to allow spoofing and other nefarious deeds.
 //	if (queuedMessages == null)
 //	queuedMessages = new TreeMap<String, MessageQueue> ();
@@ -294,7 +295,7 @@ public abstract class AbstractEnvironment implements Environment
 //	// Get a participant at random
 //	String participantname = (String)iterator.next();
 //	MessageQueue mq = queuedMessages.get(participantname);
-//	Message msg = mq.dequeue();		
+//	Message msg = mq.dequeue();
 //	deliverMessage(msg); // try to distribute one of their msgs
 //	if (mq.isEmpty()) // once an agent has had all their msgs process remove them
 //	queuedMessages.remove(participantname);
@@ -328,8 +329,20 @@ public abstract class AbstractEnvironment implements Environment
 
 	protected interface ActionHandler
 	{
+		/**
+		 * Determine if this ActionHandler can handle an Action
+		 * @param action The action to check against
+		 * @return Whether this ActionHandler can handler this action
+		 */
 		public boolean canHandle(Action action);
 
+		/**
+		 * Handles an Action
+		 * @param action The Action
+		 * @param actorID The {@link Participant} that performed the action
+		 * @return Any resulting input - this appears to be dropped by presage
+		 * TODO: fix the dropping over the result
+		 */
 		public Input handle(Action action, String actorID);
 	}
 
