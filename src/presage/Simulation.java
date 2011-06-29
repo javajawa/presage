@@ -672,6 +672,11 @@ public class Simulation implements Runnable
 		return resultSet;
 	}
 
+	public SortedSet<String> getactiveParticipantIdSet()
+	{
+		return Collections.unmodifiableSortedSet(activeParticipantIdSet);
+	}
+
 	public SortedSet<String> getParticipantIdSet()
 	{
 		return Collections.unmodifiableSortedSet(participantIdSet);
