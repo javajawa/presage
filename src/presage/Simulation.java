@@ -238,8 +238,16 @@ public class Simulation implements Runnable
 
 		eventscriptmanager.initialise();
 
-		thread = new Thread(this);
-		thread.start();
+		if (presageConfig.getAsync())
+		{
+			thread = new Thread(this);
+			thread.start();
+		}
+		else
+		{
+			threadSuspended = false;
+			run();
+		}
 	}
 
 	// private volatile boolean executeCompleted = false;
@@ -353,8 +361,8 @@ public class Simulation implements Runnable
 				// This will actually get the datamodel for before the execution! 
 				// as we got the model before calling execute methods
 
-
-				Thread.sleep(presageConfig.getThreadDelay());
+				if (!presageConfig.getAsync())
+					Thread.sleep(presageConfig.getThreadDelay());
 
 				incTime();
 				
